@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { ExternalLinkIcon } from 'lucide-react'
 import { DocsContent, DocsNavigation } from '@/components/docs'
 import {
-  getAllWikiSlugs,
-  getWikiPage,
-  getAdjacentPages,
-  fetchWikiPage,
-  processMarkdown,
-  extractExcerpt,
+    getAllWikiSlugs,
+    getWikiPage,
+    getAdjacentPages,
+    fetchWikiPage,
+    processMarkdown,
+    extractExcerpt,
 } from '@/lib/wiki'
 import type { Metadata } from 'next'
 
@@ -40,11 +40,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: `${siteUrl}/docs/${slug}`,
       siteName: 'Vercel Doorman',
+      images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: page.title,
       description,
+      images: ['/og-image.jpg'],
     },
   }
 }
@@ -64,8 +66,21 @@ export default async function DocPage({ params }: PageProps) {
   const wikiEditUrl = `https://github.com/gfargo/vercel-doorman/wiki/${page.wikiPath}/_edit`
   const wikiViewUrl = `https://github.com/gfargo/vercel-doorman/wiki/${page.wikiPath}`
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doorman.griffen.codes'
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: page.title,
+    description: page.description ?? '',
+    url: `${siteUrl}/docs/${slug}`,
+    author: { '@type': 'Organization', name: 'Vercel Doorman', url: siteUrl },
+    publisher: { '@type': 'Organization', name: 'Vercel Doorman', url: siteUrl },
+    isPartOf: { '@type': 'TechArticle', name: 'Vercel Doorman Documentation', url: `${siteUrl}/docs` },
+  }
+
   return (
     <article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm text-gray-400 mb-6" aria-label="Breadcrumb">
         <Link href="/docs" className="hover:text-gray-600 transition-colors">

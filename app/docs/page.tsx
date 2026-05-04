@@ -1,6 +1,30 @@
 import Link from 'next/link'
 import { ArrowRightIcon, BookOpenIcon, GithubIcon, PackageIcon } from 'lucide-react'
 import { getWikiCategories, fetchWikiPage, extractExcerpt } from '@/lib/wiki'
+import type { Metadata } from 'next'
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doorman.griffen.codes'
+
+export const metadata: Metadata = {
+  title: 'Documentation',
+  description:
+    'Vercel Doorman documentation — learn how to manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+  alternates: { canonical: '/docs' },
+  openGraph: {
+    type: 'website',
+    title: 'Documentation | Vercel Doorman',
+    description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    url: `${siteUrl}/docs`,
+    siteName: 'Vercel Doorman',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Documentation | Vercel Doorman',
+    description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    images: ['/og-image.jpg'],
+  },
+}
 
 const categoryIcons: Record<string, string> = {
   'Getting Started': '🚀',

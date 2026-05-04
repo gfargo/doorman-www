@@ -3,10 +3,7 @@ import { getWikiCategories } from '@/lib/wiki'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Documentation',
-    template: '%s | Vercel Doorman Docs',
-  },
+  title: 'Documentation',
   description: 'Vercel Doorman documentation — manage firewall rules as code across Vercel and Cloudflare.',
 }
 

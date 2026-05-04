@@ -1,15 +1,15 @@
 import {
-  Book,
-  ChevronRight,
-  DownloadCloudIcon,
-  ExternalLink,
-  FileJsonIcon,
-  FolderSyncIcon,
-  GitBranch,
-  ListTodoIcon,
-  ScanEyeIcon,
-  Shield,
-  Workflow,
+    Book,
+    ChevronRight,
+    DownloadCloudIcon,
+    ExternalLink,
+    FileJsonIcon,
+    FolderSyncIcon,
+    GitBranch,
+    ListTodoIcon,
+    ScanEyeIcon,
+    Shield,
+    Workflow,
 } from 'lucide-react'
 import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
@@ -302,7 +302,7 @@ export default function Home() {
                       </Link>
                     </Button>
                     <Button asChild variant="ghost">
-                      <Link href="/getting-started">
+                      <Link href="/docs/getting-started">
                         <ChevronRight className="w-5 h-5 mr-2" />
                         Getting Started
                       </Link>
