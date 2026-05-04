@@ -1,35 +1,28 @@
-"use client"
+'use client'
 
-import React, { forwardRef, useRef } from "react"
+import React, { forwardRef, useRef } from 'react'
 
-import { AnimatedBeam } from "@/components/ui/animated-beam"
-import { cn } from "@/lib/utils"
-import {
-  BotOffIcon,
-  BrainCircuitIcon,
-  Code2Icon,
-  DoorOpenIcon,
-  MapIcon
-} from "lucide-react"
+import { AnimatedBeam } from '@/components/ui/animated-beam'
+import { cn } from '@/lib/utils'
+import { BotOffIcon, BrainCircuitIcon, Code2Icon, DoorOpenIcon, MapIcon } from 'lucide-react'
 
-const Circle = forwardRef<
-  HTMLDivElement,
-  { className?: string; children?: React.ReactNode }
->(({ className, children }, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-primary text-primary-foreground p-3 border-white/80",
-        className
-      )}
-    >
-      {children}
-    </div>
-  )
-})
+const Circle = forwardRef<HTMLDivElement, { className?: string; children?: React.ReactNode }>(
+  ({ className, children }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          'z-10 flex size-12 items-center justify-center rounded-full border-2 bg-primary text-primary-foreground p-3 border-white/80',
+          className,
+        )}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
-Circle.displayName = "Circle"
+Circle.displayName = 'Circle'
 
 export function TemplateFlow({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -42,24 +35,18 @@ export function TemplateFlow({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn(
-        "relative flex w-full max-w-[360px] items-center justify-center overflow-hidden py-2",
-        className
-      )}
+      className={cn('relative flex w-full max-w-[360px] items-center justify-center overflow-hidden py-2', className)}
       ref={containerRef}
     >
       <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
         <div className="flex flex-col justify-center">
           <Circle ref={div7Ref}>
-            <Code2Icon className='h-4 w-4' />
+            <Code2Icon className="h-4 w-4" />
           </Circle>
         </div>
 
         <div className="flex flex-col justify-center">
-          <Circle
-            ref={div6Ref}
-            className="size-16"
-          >
+          <Circle ref={div6Ref} className="size-16">
             <DoorOpenIcon className="w-4 h-4" />
           </Circle>
         </div>
@@ -136,10 +123,7 @@ export function TemplateFlow({ className }: { className?: string }) {
 
 const Icons = {
   wordpress: () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 122.52 122.523"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.52 122.523">
       <g fill="#fff">
         <path d="m8.708 61.26c0 20.802 12.089 38.779 29.619 47.298l-25.069-68.686c-2.916 6.536-4.55 13.769-4.55 21.388z" />
         <path d="m96.74 58.608c0-6.495-2.333-10.993-4.334-14.494-2.664-4.329-5.161-7.995-5.161-12.324 0-4.831 3.664-9.328 8.825-9.328.233 0 .454.029.681.042-9.35-8.566-21.807-13.796-35.489-13.796-18.36 0-34.513 9.42-43.91 23.688 1.233.037 2.395.063 3.382.063 5.497 0 14.006-.667 14.006-.667 2.833-.167 3.167 3.994.337 4.329 0 0-2.847.335-6.015.501l19.138 56.925 11.501-34.493-8.188-22.434c-2.83-.166-5.511-.501-5.511-.501-2.832-.166-2.5-4.496.332-4.329 0 0 8.679.667 13.843.667 5.496 0 14.006-.667 14.006-.667 2.835-.167 3.168 3.994.337 4.329 0 0-2.853.335-6.015.501l18.992 56.494 5.242-17.517c2.272-7.269 4.001-12.49 4.001-16.989z" />

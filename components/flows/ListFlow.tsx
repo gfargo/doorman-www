@@ -1,30 +1,29 @@
-"use client"
+'use client'
 
-import React, { forwardRef, useRef } from "react"
+import React, { forwardRef, useRef } from 'react'
 
-import { AnimatedBeam } from "@/components/ui/animated-beam"
-import { cn } from "@/lib/utils"
-import { VercelLogoIcon } from "@radix-ui/react-icons"
-import { DoorOpenIcon, FileCode2Icon, TableIcon } from "lucide-react"
+import { AnimatedBeam } from '@/components/ui/animated-beam'
+import { cn } from '@/lib/utils'
+import { VercelLogoIcon } from '@radix-ui/react-icons'
+import { DoorOpenIcon, FileCode2Icon, TableIcon } from 'lucide-react'
 
-const Circle = forwardRef<
-  HTMLDivElement,
-  { className?: string; children?: React.ReactNode }
->(({ className, children }, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-primary text-primary-foreground p-3 border-white/80",
-        className
-      )}
-    >
-      {children}
-    </div>
-  )
-})
+const Circle = forwardRef<HTMLDivElement, { className?: string; children?: React.ReactNode }>(
+  ({ className, children }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          'z-10 flex size-12 items-center justify-center rounded-full border-2 bg-primary text-primary-foreground p-3 border-white/80',
+          className,
+        )}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
-Circle.displayName = "Circle"
+Circle.displayName = 'Circle'
 
 export function ListFlow({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -36,9 +35,8 @@ export function ListFlow({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        (className =
-          "relative flex w-full max-w-[360px] items-center justify-center overflow-hidden py-2"),
-        className
+        'relative flex w-full max-w-[360px] items-center justify-center overflow-hidden py-2',
+        className,
       )}
       ref={containerRef}
     >
@@ -49,10 +47,7 @@ export function ListFlow({ className }: { className?: string }) {
           </Circle>
         </div>
         <div className="flex flex-col justify-center">
-          <Circle
-            ref={div6Ref}
-            className="size-16"
-          >
+          <Circle ref={div6Ref} className="size-16">
             <DoorOpenIcon className="w-4 h-4" />
           </Circle>
         </div>
