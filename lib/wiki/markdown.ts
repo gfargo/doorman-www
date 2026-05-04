@@ -77,10 +77,20 @@ export function transformRelativeLinks(markdown: string): string {
 }
 
 /**
+ * Strip the leading H1 from wiki markdown content.
+ * Wiki pages always start with `# Page Title` which duplicates the
+ * title already rendered by the page template. Removes only the
+ * first H1 (and any blank lines immediately after it).
+ */
+export function stripLeadingH1(markdown: string): string {
+  return markdown.replace(/^\s*#\s+[^\n]+\n*/, '')
+}
+
+/**
  * Process markdown content before rendering.
  */
 export function processMarkdown(markdown: string, options?: { transformLinks?: boolean }): string {
-  let result = markdown
+  let result = stripLeadingH1(markdown)
   if (options?.transformLinks !== false) {
     result = transformWikiLinks(result)
     result = transformWikiStyleLinks(result)

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { transformWikiLinks, transformWikiStyleLinks, processMarkdown, extractExcerpt } from '../markdown'
+import { transformWikiLinks, transformWikiStyleLinks, processMarkdown, extractExcerpt, stripLeadingH1 } from '../markdown'
 
 describe('markdown', () => {
   describe('transformWikiLinks', () => {
@@ -51,6 +51,20 @@ describe('markdown', () => {
   })
 
   describe('processMarkdown', () => {
+    it('strips the leading H1', () => {
+      const input = '# Commands Overview\n\nSome content here.'
+      const result = processMarkdown(input)
+      expect(result).not.toContain('# Commands Overview')
+      expect(result).toContain('Some content here.')
+    })
+
+    it('only strips the first H1, not subsequent ones', () => {
+      const input = '# First Title\n\nContent.\n\n# Second Title\n\nMore content.'
+      const result = processMarkdown(input)
+      expect(result).not.toMatch(/^#\s+First Title/)
+      expect(result).toContain('# Second Title')
+    })
+
     it('transforms both link types by default', () => {
       const input = '[[Getting Started]] and [Config](https://github.com/gfargo/vercel-doorman/wiki/Configuration)'
       const result = processMarkdown(input)
@@ -62,6 +76,35 @@ describe('markdown', () => {
       const input = '[[Getting Started]]'
       const result = processMarkdown(input, { transformLinks: false })
       expect(result).toBe(input)
+    })
+  })
+
+  describe('stripLeadingH1', () => {
+    it('removes the first H1 heading', () => {
+      const input = '# Getting Started\n\nSome content.'
+      expect(stripLeadingH1(input)).toBe('Some content.')
+    })
+
+    it('handles leading whitespace before H1', () => {
+      const input = '  # Title\n\nContent.'
+      expect(stripLeadingH1(input)).toBe('Content.')
+    })
+
+    it('leaves content without H1 untouched', () => {
+      const input = '## Subheading\n\nContent.'
+      expect(stripLeadingH1(input)).toBe(input)
+    })
+
+    it('only removes the first H1', () => {
+      const input = '# First\n\n# Second\n\nContent.'
+      const result = stripLeadingH1(input)
+      expect(result).not.toContain('# First')
+      expect(result).toContain('# Second')
+    })
+
+    it('strips trailing blank lines after the H1', () => {
+      const input = '# Title\n\n\n\nContent.'
+      expect(stripLeadingH1(input)).toBe('Content.')
     })
   })
 
