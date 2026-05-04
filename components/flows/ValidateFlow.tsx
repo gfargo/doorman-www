@@ -1,29 +1,28 @@
-"use client"
+'use client'
 
-import React, { forwardRef, useRef } from "react"
+import React, { forwardRef, useRef } from 'react'
 
-import { AnimatedBeam } from "@/components/ui/animated-beam"
-import { cn } from "@/lib/utils"
-import { Code2Icon, DoorOpenIcon } from "lucide-react"
+import { AnimatedBeam } from '@/components/ui/animated-beam'
+import { cn } from '@/lib/utils'
+import { Code2Icon, DoorOpenIcon } from 'lucide-react'
 
-const Circle = forwardRef<
-  HTMLDivElement,
-  { className?: string; children?: React.ReactNode }
->(({ className, children }, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-primary text-primary-foreground p-3 border-white/80",
-        className
-      )}
-    >
-      {children}
-    </div>
-  )
-})
+const Circle = forwardRef<HTMLDivElement, { className?: string; children?: React.ReactNode }>(
+  ({ className, children }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          'z-10 flex size-12 items-center justify-center rounded-full border-2 bg-primary text-primary-foreground p-3 border-white/80',
+          className,
+        )}
+      >
+        {children}
+      </div>
+    )
+  },
+)
 
-Circle.displayName = "Circle"
+Circle.displayName = 'Circle'
 
 export function ValidateFlow({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -40,10 +39,7 @@ export function ValidateFlow({ className }: { className?: string }) {
           <Circle ref={div3Ref}>
             <Code2Icon className="w-4 h-4" />
           </Circle>
-          <Circle
-            ref={div1Ref}
-            className="size-16"
-          >
+          <Circle ref={div1Ref} className="size-16">
             <DoorOpenIcon className="w-4 h-4" />
           </Circle>
         </div>
@@ -74,7 +70,6 @@ export function ValidateFlow({ className }: { className?: string }) {
         endYOffset={-5}
         curvature={60}
       />
-       
     </div>
   )
 }

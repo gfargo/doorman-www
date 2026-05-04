@@ -1,6 +1,6 @@
-import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { BugIcon } from "lucide-react";
-import Link from "next/link";
+import { DiscordLogoIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
+import { BugIcon } from 'lucide-react'
+import Link from 'next/link'
 
 export const Footer = () => {
   return (
@@ -9,20 +9,14 @@ export const Footer = () => {
         <div className="flex flex-wrap justify-between items-center">
           <div className="w-full md:w-auto text-center md:text-left mb-4 md:mb-0">
             <p className="text-xs">
-              &copy; 2025{" "}
-              <a
-                href="https://griffen.codes"
-                className="hover:underline"
-              >
+              &copy; 2025{' '}
+              <a href="https://griffen.codes" className="hover:underline">
                 griffen.codes
               </a>
             </p>
           </div>
           <div className="w-full md:w-auto flex justify-center md:justify-end space-x-6">
-            <Link
-              href="https://discord.gg/KGu9nE9Ejx"
-              className="text-gray-600 hover:text-black transition-colors"
-            >
+            <Link href="https://discord.gg/KGu9nE9Ejx" className="text-gray-600 hover:text-black transition-colors">
               <DiscordLogoIcon className="w-6 h-6" />
               <span className="sr-only">Discord</span>
             </Link>
@@ -44,5 +38,5 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}

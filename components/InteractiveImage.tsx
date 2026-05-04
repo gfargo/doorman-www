@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 
 interface InteractiveImageProps {
   src: string
@@ -19,13 +19,9 @@ export function InteractiveImage({ src, alt, flow }: InteractiveImageProps) {
   const dampenedX = useSpring(mouseX, { stiffness: 300, damping: 65 })
   const dampenedY = useSpring(mouseY, { stiffness: 300, damping: 65 })
 
-  const rotateX = useTransform(dampenedY, [-0.5, 0.5], ["7.5deg", "-7.5deg"])
-  const rotateY = useTransform(dampenedX, [-0.5, 0.5], ["-7.5deg", "7.5deg"])
-  const scale = useTransform(
-    dampenedX,
-    [-1, 0, 1],
-    [1, isHovered ? 1.05 : 1, 1]
-  )
+  const rotateX = useTransform(dampenedY, [-0.5, 0.5], ['7.5deg', '-7.5deg'])
+  const rotateY = useTransform(dampenedX, [-0.5, 0.5], ['-7.5deg', '7.5deg'])
+  const scale = useTransform(dampenedX, [-1, 0, 1], [1, isHovered ? 1.05 : 1, 1])
 
   useEffect(() => {
     function handleMouseMove(event: MouseEvent) {
@@ -38,19 +34,16 @@ export function InteractiveImage({ src, alt, flow }: InteractiveImageProps) {
     }
 
     if (isHovered) {
-      window.addEventListener("mousemove", handleMouseMove)
+      window.addEventListener('mousemove', handleMouseMove)
     }
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [isHovered, mouseX, mouseY])
 
   return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <motion.div
         ref={ref}
         style={{
@@ -61,19 +54,17 @@ export function InteractiveImage({ src, alt, flow }: InteractiveImageProps) {
         // @ts-ignore  type error
         className="relative w-full h-[300px] rounded-lg overflow-hidden border border-solid shadow-md"
       >
-        <div className="w-full h-full inset-0 absolute z-10 flex flex-col items-center justify-center p-8">
-          {flow}
-        </div>
+        <div className="w-full h-full inset-0 absolute z-10 flex flex-col items-center justify-center p-8">{flow}</div>
         <Image
           src={src}
           alt={alt}
           width={1280}
           height={600}
           style={{
-            objectFit: "initial",
+            objectFit: 'initial',
             scale: 4.5,
-            transformOrigin: "5% 19%",
-            transform: "rotate3d(4, -1, -1, -0.2turn"
+            transformOrigin: '5% 19%',
+            transform: 'rotate3d(4, -1, -1, -0.2turn',
           }}
           sizes="(max-width: 668px) 100vw, (max-width: 1200px) 100vw, 33vw"
           className="relative z-0 opacity-80 hover:opacity-100"
