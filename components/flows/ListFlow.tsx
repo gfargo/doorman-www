@@ -35,7 +35,7 @@ export function ListFlow({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        (className = 'relative flex w-full max-w-[360px] items-center justify-center overflow-hidden py-2'),
+        'relative flex w-full max-w-[360px] items-center justify-center overflow-hidden py-2',
         className,
       )}
       ref={containerRef}

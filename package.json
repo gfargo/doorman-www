@@ -7,7 +7,7 @@
     "start": "next start",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:integration": "vitest run --testPathPattern fetch-wiki",
+    "test:integration": "RUN_INTEGRATION=1 vitest run lib/wiki/__tests__/fetch-wiki.test.ts",
     "firewall:list": "vercel-doorman list",
     "firewall:download": "vercel-doorman download",
     "firewall:sync": "vercel-doorman sync"
@@ -47,7 +47,6 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-markdown": "^10.1.0",
-    "react-syntax-highlighter": "^16.1.1",
     "remark-gfm": "^4.0.1",
     "server-only": "^0.0.1",
     "stripe": "^16.12.0",
@@ -60,7 +59,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/react-syntax-highlighter": "^15.5.13",
     "vitest": "^4.1.5"
   }
 }

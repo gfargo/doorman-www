@@ -46,6 +46,37 @@ export function transformWikiStyleLinks(markdown: string): string {
 }
 
 /**
+ * Convert bare relative markdown links like `[Configuration](Configuration)`
+ * into internal `/docs/` routes. Only rewrites links that match a known wiki page;
+ * links starting with `/`, `#`, or `http` are left untouched.
+ */
+export function transformRelativeLinks(markdown: string): string {
+  const allPages = getWikiCategories().flatMap((c) => c.pages)
+
+  return markdown.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label: string, href: string) => {
+    // Skip absolute URLs, anchors, and already-routed paths
+    if (href.startsWith('http') || href.startsWith('/') || href.startsWith('#')) {
+      return match
+    }
+
+    // Strip optional .md extension and anchor fragment for matching
+    const cleanHref = href.replace(/\.md$/i, '').split('#')[0] ?? ''
+    const anchor = href.includes('#') ? '#' + href.split('#').slice(1).join('#') : ''
+
+    const page = allPages.find(
+      (p) =>
+        p.wikiPath.toLowerCase() === cleanHref.toLowerCase() ||
+        p.wikiPath.toLowerCase() === cleanHref.replace(/\s+/g, '-').toLowerCase(),
+    )
+
+    if (page) {
+      return `[${label}](/docs/${page.slug}${anchor})`
+    }
+    return match
+  })
+}
+
+/**
  * Process markdown content before rendering.
  */
 export function processMarkdown(markdown: string, options?: { transformLinks?: boolean }): string {
@@ -53,6 +84,7 @@ export function processMarkdown(markdown: string, options?: { transformLinks?: b
   if (options?.transformLinks !== false) {
     result = transformWikiLinks(result)
     result = transformWikiStyleLinks(result)
+    result = transformRelativeLinks(result)
   }
   return result
 }
