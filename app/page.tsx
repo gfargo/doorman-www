@@ -78,8 +78,8 @@ export default function Home() {
       <main className="">
         <section className="container px-4 md:px-0 mx-auto relative text-center py-24 mb-16 overflow-hidden">
           <div className="relative z-10">
-            <div className="mx-auto mb-8 w-fit rounded-full border border-orange-200 bg-orange-50 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-orange-600">
-              Doorman 2.0 <span className="ml-1 font-normal text-orange-500">Cloudflare WAF support coming soon</span>
+            <div className="mx-auto mb-8 w-fit rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+              Doorman 2.0 <span className="ml-1 font-normal text-emerald-600">Now with Cloudflare WAF support</span>
             </div>
             <BlurIn
               word="Where W▲F meets .config"
@@ -108,7 +108,7 @@ export default function Home() {
               <div className="rounded-3xl bg-slate-950/90 px-6 py-5 text-left">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">
                   <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  Doorman 2.0
+                  Doorman 2.0 — Available Now
                 </div>
                 <p className="mt-1.5 text-sm text-slate-100">
                   Multi-provider WAF automation wired directly into your version control and CI/CD workflows.
@@ -285,7 +285,7 @@ export default function Home() {
           <div className="z-10 relative">
             <div className="flex flex-col items-center justify-center gap-4">
               <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.5}>
-                <h2 className="text-2xl font-bold">Ready for Doorman 2.0?</h2>
+                <h2 className="text-2xl font-bold">Get Started with Doorman 2.0</h2>
               </BoxReveal>
               <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.5}>
                 <p className="text-gray-400 mb-6">
