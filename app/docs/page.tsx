@@ -8,19 +8,19 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doorman.griffen.cod
 export const metadata: Metadata = {
   title: 'Documentation',
   description:
-    'Vercel Doorman documentation — learn how to manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    'Doorman documentation — learn how to manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
   alternates: { canonical: '/docs' },
   openGraph: {
     type: 'website',
-    title: 'Documentation | Vercel Doorman',
+    title: 'Documentation | Doorman',
     description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
     url: `${siteUrl}/docs`,
-    siteName: 'Vercel Doorman',
+    siteName: 'Doorman',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Documentation | Vercel Doorman',
+    title: 'Documentation | Doorman',
     description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
     images: ['/og-image.jpg'],
   },
@@ -153,7 +153,7 @@ export default async function DocsIndex() {
               <ArrowRightIcon className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <a
-              href="https://github.com/gfargo/vercel-doorman/wiki"
+              href="https://github.com/gfargo/doorman/wiki"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 text-slate-600 text-sm font-medium hover:border-slate-400 hover:text-slate-900 transition-colors"
@@ -180,7 +180,7 @@ export default async function DocsIndex() {
               </div>
               <div className="flex items-center gap-3">
                 <code className="px-3 py-1.5 rounded-md bg-slate-900 text-emerald-400 text-xs font-mono">
-                  npx vercel-doorman init
+                  npx @gfargo/doorman init
                 </code>
                 <Link
                   href="/docs/getting-started"
@@ -263,7 +263,7 @@ export default async function DocsIndex() {
           </div>
           <div className="flex flex-wrap gap-6">
             <a
-              href="https://github.com/gfargo/vercel-doorman"
+              href="https://github.com/gfargo/doorman"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2.5 text-sm text-slate-400 hover:text-slate-700 transition-colors"
@@ -273,7 +273,7 @@ export default async function DocsIndex() {
               <ArrowRightIcon className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </a>
             <a
-              href="https://www.npmjs.com/package/vercel-doorman"
+              href="https://www.npmjs.com/package/@gfargo/doorman"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2.5 text-sm text-slate-400 hover:text-slate-700 transition-colors"
@@ -283,7 +283,7 @@ export default async function DocsIndex() {
               <ArrowRightIcon className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </a>
             <a
-              href="https://github.com/gfargo/vercel-doorman/wiki"
+              href="https://github.com/gfargo/doorman/wiki"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2.5 text-sm text-slate-400 hover:text-slate-700 transition-colors"

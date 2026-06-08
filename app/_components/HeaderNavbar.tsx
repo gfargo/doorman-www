@@ -60,7 +60,7 @@ const DesktopLinks = () => (
         Get Started
       </Link>
       <Link
-        href="https://github.com/gfargo/vercel-doorman"
+        href="https://github.com/gfargo/doorman"
         className="text-gray-600 hover:text-black transition-colors"
       >
         <GitHubLogoIcon className="w-6 h-6" />
@@ -87,7 +87,7 @@ const MobileLinks = ({ setIsMenuOpen }: { setIsMenuOpen: (isOpen: boolean) => vo
       Get Started
     </Link>
     <Link
-      href="https://github.com/gfargo/vercel-doorman"
+      href="https://github.com/gfargo/doorman"
       target="_blank"
       className="text-gray-600 hover:text-black transition-colors flex items-center"
     >

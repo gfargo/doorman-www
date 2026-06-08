@@ -59,7 +59,7 @@ export function DocsSidebar({ categories }: DocsSidebarProps) {
 
       <div className="mt-8 pt-4 border-t border-gray-200">
         <a
-          href="https://github.com/gfargo/vercel-doorman/wiki"
+          href="https://github.com/gfargo/doorman/wiki"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"

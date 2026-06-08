@@ -36,7 +36,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doorman.griffen.cod
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Vercel Doorman',
+  name: 'Doorman',
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Cross-platform',
   description:
@@ -59,7 +59,7 @@ const jsonLd = {
     '@type': 'WebPage',
     url: `${siteUrl}/docs`,
   },
-  installUrl: 'https://www.npmjs.com/package/vercel-doorman',
+  installUrl: 'https://www.npmjs.com/package/@gfargo/doorman',
   screenshot: `${siteUrl}/og-image.jpg`,
 }
 
@@ -118,10 +118,10 @@ export default function Home() {
             <div className="w-full flex justify-center">
               <CopyableCommand
                 command={[
-                  { value: 'npm', command: 'npm install vercel-doorman' },
-                  { value: 'yarn', command: 'yarn add vercel-doorman' },
-                  { value: 'pnpm', command: 'pnpm add vercel-doorman' },
-                  { value: 'bun', command: 'bun add vercel-doorman' },
+                  { value: 'npm', command: 'npm install @gfargo/doorman' },
+                  { value: 'yarn', command: 'yarn add @gfargo/doorman' },
+                  { value: 'pnpm', command: 'pnpm add @gfargo/doorman' },
+                  { value: 'bun', command: 'bun add @gfargo/doorman' },
                 ]}
               />
             </div>
@@ -175,15 +175,15 @@ export default function Home() {
               flow={<SyncFlow />}
               imageSrc="/gifs/demo-sync.gif"
               command={[
-                { value: 'npm', command: 'npx vercel-doorman sync' },
-                { value: 'yarn', command: 'npx vercel-doorman sync' },
+                { value: 'npm', command: 'npx @gfargo/doorman sync' },
+                { value: 'yarn', command: 'npx @gfargo/doorman sync' },
                 {
                   value: 'pnpm',
-                  command: 'pnpm dlx vercel-doorman@latest sync',
+                  command: 'pnpm dlx @gfargo/doorman@latest sync',
                 },
                 {
                   value: 'bun',
-                  command: 'bunx --bun vercel-doorman@latest sync',
+                  command: 'bunx --bun @gfargo/doorman@latest sync',
                 },
               ]}
             />
@@ -195,15 +195,15 @@ export default function Home() {
               flow={<DownloadFlowBeam />}
               imageSrc="/gifs/demo-download.gif"
               command={[
-                { value: 'npm', command: 'npx vercel-doorman download' },
-                { value: 'yarn', command: 'npx vercel-doorman download' },
+                { value: 'npm', command: 'npx @gfargo/doorman download' },
+                { value: 'yarn', command: 'npx @gfargo/doorman download' },
                 {
                   value: 'pnpm',
-                  command: 'pnpm dlx vercel-doorman@latest download',
+                  command: 'pnpm dlx @gfargo/doorman@latest download',
                 },
                 {
                   value: 'bun',
-                  command: 'bunx --bun vercel-doorman@latest download',
+                  command: 'bunx --bun @gfargo/doorman@latest download',
                 },
               ]}
             />
@@ -214,15 +214,15 @@ export default function Home() {
               flow={<ListFlow />}
               imageSrc="/gifs/demo-list2.gif"
               command={[
-                { value: 'npm', command: 'npx vercel-doorman list' },
-                { value: 'yarn', command: 'npx vercel-doorman list' },
+                { value: 'npm', command: 'npx @gfargo/doorman list' },
+                { value: 'yarn', command: 'npx @gfargo/doorman list' },
                 {
                   value: 'pnpm',
-                  command: 'pnpm dlx vercel-doorman@latest list',
+                  command: 'pnpm dlx @gfargo/doorman@latest list',
                 },
                 {
                   value: 'bun',
-                  command: 'bunx --bun vercel-doorman@latest list',
+                  command: 'bunx --bun @gfargo/doorman@latest list',
                 },
               ]}
             />
@@ -235,15 +235,15 @@ export default function Home() {
               // TODO REPLACE WITH NEW GIF
               imageSrc="/gifs/demo-download.gif"
               command={[
-                { value: 'npm', command: 'npx vercel-doorman validate' },
-                { value: 'yarn', command: 'npx vercel-doorman validate' },
+                { value: 'npm', command: 'npx @gfargo/doorman validate' },
+                { value: 'yarn', command: 'npx @gfargo/doorman validate' },
                 {
                   value: 'pnpm',
-                  command: 'pnpm dlx vercel-doorman@latest validate',
+                  command: 'pnpm dlx @gfargo/doorman@latest validate',
                 },
                 {
                   value: 'bun',
-                  command: 'bunx --bun vercel-doorman@latest validate',
+                  command: 'bunx --bun @gfargo/doorman@latest validate',
                 },
               ]}
             />
@@ -255,15 +255,15 @@ export default function Home() {
               // TODO REPLACE WITH NEW GIF
               imageSrc="/gifs/demo-sync.gif"
               command={[
-                { value: 'npm', command: 'npx vercel-doorman template' },
-                { value: 'yarn', command: 'npx vercel-doorman template' },
+                { value: 'npm', command: 'npx @gfargo/doorman template' },
+                { value: 'yarn', command: 'npx @gfargo/doorman template' },
                 {
                   value: 'pnpm',
-                  command: 'pnpm dlx vercel-doorman@latest template',
+                  command: 'pnpm dlx @gfargo/doorman@latest template',
                 },
                 {
                   value: 'bun',
-                  command: 'bunx --bun vercel-doorman@latest template',
+                  command: 'bunx --bun @gfargo/doorman@latest template',
                 },
               ]}
             />
@@ -309,7 +309,7 @@ export default function Home() {
                     </Button>
                   </div>
                   <Link
-                    href="https://github.com/gfargo/vercel-doorman/tree/main/examples"
+                    href="https://github.com/gfargo/doorman/tree/main/examples"
                     className="text-slate-600 hover:underline inline-flex items-center"
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />

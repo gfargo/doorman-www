@@ -7,7 +7,7 @@ const reviews = [
     role: 'DevOps Engineer',
     company: 'TechCorp',
     review:
-      "Vercel Doorman has revolutionized how we manage our firewall rules. It's a game-changer for our CI/CD pipeline.",
+      "Doorman has revolutionized how we manage our firewall rules. It's a game-changer for our CI/CD pipeline.",
   },
   {
     name: 'Samantha Lee',
@@ -21,14 +21,14 @@ const reviews = [
     role: 'Security Specialist',
     company: 'SecureNet',
     review:
-      "Vercel Doorman provides the perfect balance between security and ease of use. It's now an essential part of our toolkit.",
+      "Doorman provides the perfect balance between security and ease of use. It's now an essential part of our toolkit.",
   },
   {
     name: 'Emily Rodriguez',
     role: 'CTO',
     company: 'StartupX',
     review:
-      "We've cut down our deployment time by 40% since implementing Vercel Doorman. It's been a fantastic investment for our team.",
+      "We've cut down our deployment time by 40% since implementing Doorman. It's been a fantastic investment for our team.",
   },
   {
     name: 'David Kim',

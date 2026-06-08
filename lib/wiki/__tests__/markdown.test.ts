@@ -4,13 +4,13 @@ import { transformWikiLinks, transformWikiStyleLinks, processMarkdown, extractEx
 describe('markdown', () => {
   describe('transformWikiLinks', () => {
     it('converts absolute wiki URLs to internal /docs/ routes', () => {
-      const input = '[Setup Guide](https://github.com/gfargo/vercel-doorman/wiki/Getting-Started)'
+      const input = '[Setup Guide](https://github.com/gfargo/doorman/wiki/Getting-Started)'
       const result = transformWikiLinks(input)
       expect(result).toBe('[Setup Guide](/docs/getting-started)')
     })
 
     it('leaves unrecognised wiki URLs as-is', () => {
-      const input = '[Unknown](https://github.com/gfargo/vercel-doorman/wiki/Unknown-Page)'
+      const input = '[Unknown](https://github.com/gfargo/doorman/wiki/Unknown-Page)'
       const result = transformWikiLinks(input)
       expect(result).toBe(input)
     })
@@ -23,7 +23,7 @@ describe('markdown', () => {
 
     it('handles multiple wiki links in one string', () => {
       const input =
-        'See [Getting Started](https://github.com/gfargo/vercel-doorman/wiki/Getting-Started) and [Config](https://github.com/gfargo/vercel-doorman/wiki/Configuration).'
+        'See [Getting Started](https://github.com/gfargo/doorman/wiki/Getting-Started) and [Config](https://github.com/gfargo/doorman/wiki/Configuration).'
       const result = transformWikiLinks(input)
       expect(result).toContain('/docs/getting-started')
       expect(result).toContain('/docs/configuration')
@@ -66,7 +66,7 @@ describe('markdown', () => {
     })
 
     it('transforms both link types by default', () => {
-      const input = '[[Getting Started]] and [Config](https://github.com/gfargo/vercel-doorman/wiki/Configuration)'
+      const input = '[[Getting Started]] and [Config](https://github.com/gfargo/doorman/wiki/Configuration)'
       const result = processMarkdown(input)
       expect(result).toContain('/docs/getting-started')
       expect(result).toContain('/docs/configuration')

@@ -8,9 +8,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:integration": "RUN_INTEGRATION=1 vitest run lib/wiki/__tests__/fetch-wiki.test.ts",
-    "firewall:list": "vercel-doorman list",
-    "firewall:download": "vercel-doorman download",
-    "firewall:sync": "vercel-doorman sync"
+    "firewall:list": "doorman list",
+    "firewall:download": "doorman download",
+    "firewall:sync": "doorman sync"
   },
   "type": "module",
   "dependencies": {
@@ -55,7 +55,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-react-aria-components": "1.1.6",
     "typescript": "^5.6.3",
-    "vercel-doorman": "^1.5.6",
+    "@gfargo/doorman": "^2.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

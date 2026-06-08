@@ -5,7 +5,7 @@
 import { getWikiPage, type WikiPage } from './wiki-manifest'
 
 const OWNER = 'gfargo'
-const REPO = 'vercel-doorman'
+const REPO = 'doorman'
 const WIKI_RAW_BASE = `https://raw.githubusercontent.com/wiki/${OWNER}/${REPO}`
 
 /** Revalidation interval in seconds (1 hour). */
