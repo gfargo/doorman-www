@@ -15,11 +15,6 @@ import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
 // import { Marquee } from "../components/ui/marquee";
 import { FeatureCard } from '@/components/FeatureCard'
-import { DownloadFlowBeam } from '@/components/flows/DownloadFlow'
-import { ListFlow } from '@/components/flows/ListFlow'
-import { SyncFlow } from '@/components/flows/SyncFlow'
-import { TemplateFlow } from '@/components/flows/TemplateFlow'
-import { ValidateFlow } from '@/components/flows/ValidateFlow'
 import AnimatedGridPattern from '@/components/ui/animated-grid-pattern'
 import BlurIn from '@/components/ui/blur-in'
 import BoxReveal from '@/components/ui/box-reveal'
@@ -172,8 +167,7 @@ export default function Home() {
               title="Sync Changes"
               description="Synchronize rule packs to Vercel and Cloudflare from the same config. Catch drift with provider-aware diffs before anything ships."
               icon={<FolderSyncIcon className="w-6 h-6" />}
-              flow={<SyncFlow />}
-              imageSrc="/gifs/demo-sync.gif"
+              imageSrc="/gifs/sync.gif"
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman sync' },
                 { value: 'yarn', command: 'npx @gfargo/doorman sync' },
@@ -192,8 +186,7 @@ export default function Home() {
               direction="right"
               description="Export deployed rules from each provider into versioned config files. Keep Cloudflare and Vercel in lockstep with Git history."
               icon={<DownloadCloudIcon className="w-6 h-6" />}
-              flow={<DownloadFlowBeam />}
-              imageSrc="/gifs/demo-download.gif"
+              imageSrc="/gifs/download.gif"
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman download' },
                 { value: 'yarn', command: 'npx @gfargo/doorman download' },
@@ -211,8 +204,7 @@ export default function Home() {
               title="List Rules & IPs"
               description="Inspect deployed policies with human-friendly tables or JSON. Filter by provider, environment, and rule group in seconds."
               icon={<ListTodoIcon className="w-6 h-6" />}
-              flow={<ListFlow />}
-              imageSrc="/gifs/demo-list2.gif"
+              imageSrc="/gifs/list.gif"
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman list' },
                 { value: 'yarn', command: 'npx @gfargo/doorman list' },
@@ -231,9 +223,7 @@ export default function Home() {
               direction="right"
               description="Validate rule syntax and provider-specific constraints before deployment. Ship with confidence knowing both WAFs will accept the change."
               icon={<ScanEyeIcon className="w-6 h-6" />}
-              flow={<ValidateFlow />}
-              // TODO REPLACE WITH NEW GIF
-              imageSrc="/gifs/demo-download.gif"
+              imageSrc="/gifs/validate.gif"
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman validate' },
                 { value: 'yarn', command: 'npx @gfargo/doorman validate' },
@@ -251,9 +241,7 @@ export default function Home() {
               title="Use Templates"
               description="Kickstart new protections with templates tuned for Vercel and Cloudflare. Customize and extend policy packs as your edge footprint grows."
               icon={<FileJsonIcon className="w-6 h-6" />}
-              flow={<TemplateFlow />}
-              // TODO REPLACE WITH NEW GIF
-              imageSrc="/gifs/demo-sync.gif"
+              imageSrc="/gifs/template-picker.gif"
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman template' },
                 { value: 'yarn', command: 'npx @gfargo/doorman template' },
