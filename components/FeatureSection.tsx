@@ -11,6 +11,8 @@ export function FeatureSection({
   description,
   icon,
   imageSrc,
+  imageWidth,
+  imageHeight,
   command,
   direction = 'left',
 }: {
@@ -19,6 +21,8 @@ export function FeatureSection({
   icon: React.ReactNode
   direction?: 'left' | 'right'
   imageSrc: string
+  imageWidth: number
+  imageHeight: number
   command: {
     value: string
     command: string
@@ -77,7 +81,7 @@ export function FeatureSection({
         </div>
         <div className="w-full md:w-1/2 relative">
           <motion.div variants={imageAnimation}>
-            <InteractiveImage src={imageSrc} alt={`${title} feature`} />
+            <InteractiveImage src={imageSrc} alt={`${title} feature`} width={imageWidth} height={imageHeight} />
           </motion.div>
         </div>
       </div>
