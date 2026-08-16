@@ -4,7 +4,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const CONFIG = {
-  schemaUrl: 'https://raw.githubusercontent.com/gfargo/vercel-doorman/main/schema/firewall-config.schema.json',
+  schemaUrl: 'https://raw.githubusercontent.com/gfargo/doorman/main/schema/firewall-config.schema.json',
   retryAttempts: 3,
   retryDelay: 1000, // ms
   timeout: 10000, // ms

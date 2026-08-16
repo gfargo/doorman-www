@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Documentation',
-  description: 'Vercel Doorman documentation — manage firewall rules as code across Vercel and Cloudflare.',
+  description: 'Doorman documentation — manage firewall rules as code across Vercel and Cloudflare.',
 }
 
 export const revalidate = 3600

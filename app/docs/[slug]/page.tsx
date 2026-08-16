@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: page.title,
       description,
       url: `${siteUrl}/docs/${slug}`,
-      siteName: 'Vercel Doorman',
+      siteName: 'Doorman',
       images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
     },
     twitter: {
@@ -63,8 +63,8 @@ export default async function DocPage({ params }: PageProps) {
     Promise.resolve(getAdjacentPages(slug)),
   ])
 
-  const wikiEditUrl = `https://github.com/gfargo/vercel-doorman/wiki/${page.wikiPath}/_edit`
-  const wikiViewUrl = `https://github.com/gfargo/vercel-doorman/wiki/${page.wikiPath}`
+  const wikiEditUrl = `https://github.com/gfargo/doorman/wiki/${page.wikiPath}/_edit`
+  const wikiViewUrl = `https://github.com/gfargo/doorman/wiki/${page.wikiPath}`
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doorman.griffen.codes'
   const jsonLd = {
@@ -73,9 +73,9 @@ export default async function DocPage({ params }: PageProps) {
     headline: page.title,
     description: page.description ?? '',
     url: `${siteUrl}/docs/${slug}`,
-    author: { '@type': 'Organization', name: 'Vercel Doorman', url: siteUrl },
-    publisher: { '@type': 'Organization', name: 'Vercel Doorman', url: siteUrl },
-    isPartOf: { '@type': 'TechArticle', name: 'Vercel Doorman Documentation', url: `${siteUrl}/docs` },
+    author: { '@type': 'Organization', name: 'Doorman', url: siteUrl },
+    publisher: { '@type': 'Organization', name: 'Doorman', url: siteUrl },
+    isPartOf: { '@type': 'TechArticle', name: 'Doorman Documentation', url: `${siteUrl}/docs` },
   }
 
   return (

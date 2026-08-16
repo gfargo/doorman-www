@@ -28,7 +28,7 @@ const WIKI_PAGES: WikiPage[] = [
     wikiPath: 'Getting-Started',
     category: 'Getting Started',
     order: 1,
-    description: 'Install and configure Vercel Doorman in minutes.',
+    description: 'Install and configure Doorman in minutes.',
   },
   {
     slug: 'configuration',
@@ -68,7 +68,7 @@ const WIKI_PAGES: WikiPage[] = [
     wikiPath: 'CI-CD-Integration',
     category: 'Guides',
     order: 1,
-    description: 'Integrate Vercel Doorman into GitHub Actions and other CI/CD pipelines.',
+    description: 'Integrate Doorman into GitHub Actions and other CI/CD pipelines.',
   },
   {
     slug: 'cloudflare-setup',
@@ -76,7 +76,7 @@ const WIKI_PAGES: WikiPage[] = [
     wikiPath: 'Cloudflare-Setup',
     category: 'Guides',
     order: 2,
-    description: 'Set up Vercel Doorman with Cloudflare WAF — credentials, configuration, and deployment.',
+    description: 'Set up Doorman with Cloudflare WAF — credentials, configuration, and deployment.',
   },
   {
     slug: 'cloudflare-migration',

@@ -7,10 +7,9 @@ import { useEffect, useRef, useState } from 'react'
 interface InteractiveImageProps {
   src: string
   alt: string
-  flow?: React.ReactNode
 }
 
-export function InteractiveImage({ src, alt, flow }: InteractiveImageProps) {
+export function InteractiveImage({ src, alt }: InteractiveImageProps) {
   const [isHovered, setIsHovered] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
@@ -52,22 +51,15 @@ export function InteractiveImage({ src, alt, flow }: InteractiveImageProps) {
           scale,
         }}
         // @ts-ignore  type error
-        className="relative w-full h-[300px] rounded-lg overflow-hidden border border-solid shadow-md"
+        className="relative w-full h-[340px] rounded-lg overflow-hidden border border-solid shadow-md bg-slate-950"
       >
-        <div className="w-full h-full inset-0 absolute z-10 flex flex-col items-center justify-center p-8">{flow}</div>
         <Image
           src={src}
           alt={alt}
-          width={1280}
-          height={600}
-          style={{
-            objectFit: 'initial',
-            scale: 4.5,
-            transformOrigin: '5% 19%',
-            transform: 'rotate3d(4, -1, -1, -0.2turn',
-          }}
+          fill
+          style={{ objectFit: 'contain' }}
           sizes="(max-width: 668px) 100vw, (max-width: 1200px) 100vw, 33vw"
-          className="relative z-0 opacity-80 hover:opacity-100"
+          className="relative z-0"
           unoptimized
         />
       </motion.div>

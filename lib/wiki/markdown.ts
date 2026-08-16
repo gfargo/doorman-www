@@ -7,7 +7,7 @@
 
 import { getWikiCategories } from './wiki-manifest'
 
-const WIKI_LINK_RE = /\[([^\]]+)\]\(https:\/\/github\.com\/gfargo\/vercel-doorman\/wiki\/([^)]+)\)/gi
+const WIKI_LINK_RE = /\[([^\]]+)\]\(https:\/\/github\.com\/gfargo\/doorman\/wiki\/([^)]+)\)/gi
 
 /**
  * Convert absolute GitHub Wiki URLs in markdown to internal `/docs/` routes.

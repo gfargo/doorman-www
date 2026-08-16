@@ -21,14 +21,14 @@ export const Footer = () => {
               <span className="sr-only">Discord</span>
             </Link>
             <Link
-              href="https://github.com/gfargo/vercel-doorman/issues"
+              href="https://github.com/gfargo/doorman/issues"
               className="text-gray-600 hover:text-black transition-colors"
             >
               <BugIcon className="w-6 h-6" />
               <span className="sr-only">Issues</span>
             </Link>
             <Link
-              href="https://github.com/gfargo/vercel-doorman"
+              href="https://github.com/gfargo/doorman"
               className="text-gray-600 hover:text-black transition-colors"
             >
               <GitHubLogoIcon className="w-6 h-6" />

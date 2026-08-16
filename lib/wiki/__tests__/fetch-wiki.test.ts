@@ -9,7 +9,7 @@ import { getWikiCategories } from '../wiki-manifest'
  * Gated behind RUN_INTEGRATION env var so `pnpm test` stays fast
  * and offline-safe. Run explicitly with `pnpm test:integration`.
  */
-const WIKI_RAW_BASE = 'https://raw.githubusercontent.com/wiki/gfargo/vercel-doorman'
+const WIKI_RAW_BASE = 'https://raw.githubusercontent.com/wiki/gfargo/doorman'
 
 const shouldRun = process.env.RUN_INTEGRATION === '1' || process.env.RUN_INTEGRATION === 'true'
 
