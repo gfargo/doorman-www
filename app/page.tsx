@@ -168,6 +168,8 @@ export default function Home() {
               description="Synchronize rule packs to Vercel and Cloudflare from the same config. Catch drift with provider-aware diffs before anything ships."
               icon={<FolderSyncIcon className="w-6 h-6" />}
               imageSrc="/gifs/sync.gif"
+              imageWidth={1900}
+              imageHeight={700}
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman sync' },
                 { value: 'yarn', command: 'npx @gfargo/doorman sync' },
@@ -187,6 +189,8 @@ export default function Home() {
               description="Export deployed rules from each provider into versioned config files. Keep Cloudflare and Vercel in lockstep with Git history."
               icon={<DownloadCloudIcon className="w-6 h-6" />}
               imageSrc="/gifs/download.gif"
+              imageWidth={1900}
+              imageHeight={800}
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman download' },
                 { value: 'yarn', command: 'npx @gfargo/doorman download' },
@@ -205,6 +209,8 @@ export default function Home() {
               description="Inspect deployed policies with human-friendly tables or JSON. Filter by provider, environment, and rule group in seconds."
               icon={<ListTodoIcon className="w-6 h-6" />}
               imageSrc="/gifs/list.gif"
+              imageWidth={1900}
+              imageHeight={800}
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman list' },
                 { value: 'yarn', command: 'npx @gfargo/doorman list' },
@@ -224,6 +230,8 @@ export default function Home() {
               description="Validate rule syntax and provider-specific constraints before deployment. Ship with confidence knowing both WAFs will accept the change."
               icon={<ScanEyeIcon className="w-6 h-6" />}
               imageSrc="/gifs/validate.gif"
+              imageWidth={1200}
+              imageHeight={600}
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman validate' },
                 { value: 'yarn', command: 'npx @gfargo/doorman validate' },
@@ -242,6 +250,8 @@ export default function Home() {
               description="Kickstart new protections with templates tuned for Vercel and Cloudflare. Customize and extend policy packs as your edge footprint grows."
               icon={<FileJsonIcon className="w-6 h-6" />}
               imageSrc="/gifs/template-picker.gif"
+              imageWidth={1200}
+              imageHeight={600}
               command={[
                 { value: 'npm', command: 'npx @gfargo/doorman template' },
                 { value: 'yarn', command: 'npx @gfargo/doorman template' },

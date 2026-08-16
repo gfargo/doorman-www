@@ -40,7 +40,7 @@
       },
       "required": ["rules"],
       "additionalProperties": false,
-      "description": "The main configuration type for Doorman"
+      "description": "The main configuration type for Vercel Doorman"
     },
     "CustomRule": {
       "type": "object",
