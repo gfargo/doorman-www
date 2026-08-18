@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url'
 
 const CONFIG = {
   schemaUrl: 'https://raw.githubusercontent.com/gfargo/doorman/main/schema/firewall-config.schema.json',
+  npmVersionUrl: 'https://registry.npmjs.org/@gfargo/doorman/latest',
   retryAttempts: 3,
   retryDelay: 1000, // ms
   timeout: 10000, // ms
@@ -143,15 +144,89 @@ async function downloadSchema(url, outputPath, attempt = 1) {
   )
 }
 
+function fetchJson(url, attempt = 1) {
+  return new Promise((resolve, reject) => {
+    const request = https.get(url, { timeout: CONFIG.timeout, headers: { 'user-agent': 'doorman-www-prebuild' } }, (response) => {
+      const { statusCode } = response
+      let data = ''
+
+      if (statusCode !== 200) {
+        response.resume()
+        if (statusCode >= 500 && attempt < CONFIG.retryAttempts) {
+          logInfo(`Received ${statusCode}, retrying (${attempt}/${CONFIG.retryAttempts})...`)
+          setTimeout(() => fetchJson(url, attempt + 1).then(resolve).catch(reject), CONFIG.retryDelay)
+          return
+        }
+        reject(new Error(`HTTP Error: ${statusCode}`))
+        return
+      }
+
+      response.on('data', (chunk) => {
+        data += chunk
+      })
+      response.on('end', () => {
+        try {
+          resolve(JSON.parse(data))
+        } catch (error) {
+          reject(new Error(`Invalid JSON response: ${error.message}`))
+        }
+      })
+    })
+
+    request.on('timeout', () => {
+      request.destroy()
+      if (attempt < CONFIG.retryAttempts) {
+        logInfo(`Request timed out, retrying (${attempt}/${CONFIG.retryAttempts})...`)
+        setTimeout(() => fetchJson(url, attempt + 1).then(resolve).catch(reject), CONFIG.retryDelay)
+      } else {
+        reject(new Error('Request timed out'))
+      }
+    })
+
+    request.on('error', (error) => {
+      if (attempt < CONFIG.retryAttempts) {
+        logInfo(`Network error, retrying (${attempt}/${CONFIG.retryAttempts})...`)
+        setTimeout(() => fetchJson(url, attempt + 1).then(resolve).catch(reject), CONFIG.retryDelay)
+      } else {
+        reject(error)
+      }
+    })
+  })
+}
+
+async function updateVersion(outputPath) {
+  logInfo(`Fetching latest published version from: ${CONFIG.npmVersionUrl}`)
+
+  try {
+    const { version } = await fetchJson(CONFIG.npmVersionUrl)
+    if (!version) {
+      throw new Error('npm registry response had no version field')
+    }
+    ensureDirectoryExists(outputPath)
+    fs.writeFileSync(outputPath, JSON.stringify({ version, fetchedAt: new Date().toISOString() }, null, 2) + '\n')
+    logSuccess(`Recorded latest version ${version} to: ${outputPath}`)
+  } catch (error) {
+    if (fs.existsSync(outputPath)) {
+      logError(`Failed to fetch latest version, keeping previously recorded version: ${error.message}`)
+    } else {
+      logError(`Failed to fetch latest version, writing fallback: ${error.message}`)
+      ensureDirectoryExists(outputPath)
+      fs.writeFileSync(outputPath, JSON.stringify({ version: '0.0.0', fetchedAt: new Date().toISOString() }, null, 2) + '\n')
+    }
+  }
+}
+
 async function main() {
-  const outputPath = path.join(__dirname, 'public', 'schema.json')
+  const schemaOutputPath = path.join(__dirname, 'public', 'schema.json')
+  const versionOutputPath = path.join(__dirname, 'public', 'version.json')
 
   try {
     console.log('\n\x1b[1m📥 Schema Downloader\x1b[0m\n')
 
-    ensureDirectoryExists(outputPath)
+    ensureDirectoryExists(schemaOutputPath)
 
-    await downloadSchema(CONFIG.schemaUrl, outputPath)
+    await downloadSchema(CONFIG.schemaUrl, schemaOutputPath)
+    await updateVersion(versionOutputPath)
 
     console.log('\n\x1b[32m✨ Prebuild completed successfully!\x1b[0m\n')
   } catch (error) {

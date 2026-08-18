@@ -15,6 +15,7 @@ import {
 import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
 import { FeatureCard } from '@/components/FeatureCard'
+import { ProviderBridge } from '@/components/ProviderBridge'
 import AnimatedGridPattern from '@/components/ui/animated-grid-pattern'
 import BlurIn from '@/components/ui/blur-in'
 import BoxReveal from '@/components/ui/box-reveal'
@@ -23,6 +24,7 @@ import DotPattern from '@/components/ui/dot-pattern'
 import HyperText from '@/components/ui/hyper-text'
 import Meteors from '@/components/ui/meteors'
 import { cn } from '@/lib/utils'
+import { DOORMAN_VERSION } from '@/lib/version'
 import { DoubleArrowDownIcon } from '@radix-ui/react-icons'
 import { FeatureSection } from '../components/FeatureSection'
 
@@ -75,7 +77,8 @@ export default function Home() {
         <section className="container px-4 md:px-0 mx-auto relative text-center py-24 mb-16 overflow-hidden">
           <div className="relative z-10">
             <div className="mx-auto mb-8 w-fit rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700">
-              Doorman 2.0 <span className="ml-1 font-normal text-emerald-600">Now with Cloudflare WAF support</span>
+              Doorman v{DOORMAN_VERSION}{' '}
+              <span className="ml-1 font-normal text-emerald-600">Now with Cloudflare WAF support</span>
             </div>
             <BlurIn
               word="Where W▲F meets .config"
@@ -104,7 +107,7 @@ export default function Home() {
               <div className="rounded-3xl bg-slate-950/90 px-6 py-5 text-left">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">
                   <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  Doorman 2.0 — Available Now
+                  Doorman v{DOORMAN_VERSION} — Available Now
                 </div>
                 <p className="mt-1.5 text-sm text-slate-100">
                   Multi-provider WAF automation wired directly into your version control and CI/CD workflows.
@@ -143,6 +146,17 @@ export default function Home() {
             description="Audit every change, enforce review policies, and keep environments consistent across providers."
             index={2}
           />
+        </section>
+
+        <section className="container px-4 md:px-0 mx-auto mb-24">
+          <div className="mx-auto mb-8 max-w-2xl text-center">
+            <h2 className="text-2xl font-bold text-black md:text-3xl">Write it once. Enforce it everywhere.</h2>
+            <p className="mt-3 text-gray-600">
+              doorman is the source of truth. Vercel gets the rule as-is; Cloudflare gets it translated into a
+              Wirefilter expression &mdash; same intent, provider-native syntax.
+            </p>
+          </div>
+          <ProviderBridge />
         </section>
 
         <section className="container px-4 md:px-0  mx-auto mb-24 pb-16 relative overflow-hidden">
@@ -297,7 +311,7 @@ export default function Home() {
           <div className="z-10 relative">
             <div className="flex flex-col items-center justify-center gap-4">
               <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.5}>
-                <h2 className="text-2xl font-bold">Get Started with Doorman 2.0</h2>
+                <h2 className="text-2xl font-bold">Get Started with Doorman v{DOORMAN_VERSION}</h2>
               </BoxReveal>
               <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.5}>
                 <p className="text-gray-400 mb-6">
