@@ -1,0 +1,34 @@
+{
+  "projectId": "prj_r4aoUTIGXlT2hmoJ4leqjt12ys1X",
+  "teamId": "team_3fFGpm53GtnbGGSzpHhWxBKe",
+  "rules": [
+    {
+      "name": "Deny WordPress URLs",
+      "description": "This helps block any bots trying to access WordPress URLs.",
+      "action": {
+        "mitigate": {
+          "redirect": null,
+          "action": "deny",
+          "rateLimit": null,
+          "actionDuration": null
+        }
+      },
+      "active": true,
+      "id": "rule_deny_word_press_ur_ls",
+      "conditionGroup": [
+        {
+          "conditions": [
+            {
+              "type": "path",
+              "op": "re",
+              "value": "/(wp-admin|wp-login\\.php|xmlrpc\\.php|wp-content|wp-includes|wp-signup\\.php|wp-activate\\.php|register\\.php|wp-register\\.php)"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ips": [],
+  "version": 2,
+  "updatedAt": "2025-10-29T07:35:16.121Z"
+}
