@@ -6,6 +6,7 @@ import {
     FileJsonIcon,
     FolderSyncIcon,
     GitBranch,
+    Import,
     ListTodoIcon,
     ScanEyeIcon,
     Shield,
@@ -48,6 +49,7 @@ const jsonLd = {
     'Provider-aware sync and drift detection',
     'Download and audit rule history',
     'Pre-configured policy templates',
+    'Adopt existing hand-configured rules with zero rework',
   ],
   softwareHelp: {
     '@type': 'WebPage',
@@ -261,6 +263,27 @@ export default function Home() {
                 {
                   value: 'bun',
                   command: 'bunx --bun @gfargo/doorman@latest template',
+                },
+              ]}
+            />
+            <FeatureSection
+              title="Adopt Existing Rules"
+              direction="right"
+              description="Already have rules configured by hand in the Vercel dashboard? Download them into a versioned config, validate the result, and commit — no rework required to bring an existing project under doorman."
+              icon={<Import className="w-6 h-6" />}
+              imageSrc="/gifs/import-existing.gif"
+              imageWidth={1900}
+              imageHeight={900}
+              command={[
+                { value: 'npm', command: 'npx @gfargo/doorman download' },
+                { value: 'yarn', command: 'npx @gfargo/doorman download' },
+                {
+                  value: 'pnpm',
+                  command: 'pnpm dlx @gfargo/doorman@latest download',
+                },
+                {
+                  value: 'bun',
+                  command: 'bunx --bun @gfargo/doorman@latest download',
                 },
               ]}
             />
