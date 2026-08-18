@@ -66,7 +66,7 @@ export default function HyperText({
 
   return (
     <div className="overflow-hidden py-2 flex cursor-default scale-100" onMouseEnter={triggerAnimation}>
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {displayText.map((letter, i) => (
           <motion.h1 key={i} {...framerProps}>
             <span className={cn('font-mono', letter === ' ' ? 'w-2 block' : '', className)}>

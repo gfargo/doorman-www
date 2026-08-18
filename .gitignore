@@ -38,3 +38,4 @@ postgres_data/
 AGENTS.md
 CLAUDE.md
 GEMINI.md
+.env*
