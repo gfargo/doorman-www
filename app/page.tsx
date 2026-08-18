@@ -13,7 +13,6 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
-// import { Marquee } from "../components/ui/marquee";
 import { FeatureCard } from '@/components/FeatureCard'
 import AnimatedGridPattern from '@/components/ui/animated-grid-pattern'
 import BlurIn from '@/components/ui/blur-in'
@@ -267,14 +266,6 @@ export default function Home() {
             />
           </div>
         </section>
-
-        {/* <section className="mb-16 py-12 bg-gray-50">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            What Our Users Say
-          </h2>
-
-          <ReviewsMarquee />
-        </section> */}
 
         <section className="bg-slate-950 text-primary-foreground p-8 py-16 text-center relative overflow-hidden">
           <div className="z-0 relative opacity-70">

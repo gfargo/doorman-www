@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className="flex flex-wrap justify-between items-center">
           <div className="w-full md:w-auto text-center md:text-left mb-4 md:mb-0">
             <p className="text-xs">
-              &copy; 2025{' '}
+              &copy; {new Date().getFullYear()}{' '}
               <a href="https://griffen.codes" className="hover:underline">
                 griffen.codes
               </a>

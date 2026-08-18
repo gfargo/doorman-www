@@ -92,7 +92,7 @@ const components: Components = {
 
 export function DocsContent({ content }: DocsContentProps) {
   return (
-    <div className="prose-doorman">
+    <div>
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
