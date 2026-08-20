@@ -8,12 +8,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doorman.griffen.cod
 export const metadata: Metadata = {
   title: 'Documentation',
   description:
-    'Doorman documentation — learn how to manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    'Doorman documentation. Learn how to manage Vercel, Cloudflare, and Fastly firewall rules as code with version control and CI/CD integration.',
   alternates: { canonical: '/docs' },
   openGraph: {
     type: 'website',
     title: 'Documentation | Doorman',
-    description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    description: 'Manage Vercel, Cloudflare, and Fastly firewall rules as code with version control and CI/CD integration.',
     url: `${siteUrl}/docs`,
     siteName: 'Doorman',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Documentation | Doorman',
-    description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    description: 'Manage Vercel, Cloudflare, and Fastly firewall rules as code with version control and CI/CD integration.',
     images: ['/og-image.jpg'],
   },
 }
@@ -127,8 +127,8 @@ export default async function DocsIndex() {
 
           <div className="mt-6 flex items-start gap-8 flex-col md:flex-row">
             <p className="text-lg text-slate-500 max-w-md leading-relaxed">
-              Everything you need to manage firewall rules as code across Vercel and Cloudflare — from first install to
-              production CI/CD.
+              Everything you need to manage firewall rules as code across Vercel, Cloudflare, and Fastly, from first
+              install to production CI/CD.
             </p>
 
             <div className="flex items-center gap-6 text-xs font-mono text-slate-400">

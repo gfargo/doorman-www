@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 
 export default function GettingStarted() {
-  redirect('/docs/getting-started')
+  permanentRedirect('/docs/getting-started')
 }
