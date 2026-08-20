@@ -1,33 +1,11 @@
-import {
-    Book,
-    ChevronRight,
-    DownloadCloudIcon,
-    ExternalLink,
-    FileJsonIcon,
-    FolderSyncIcon,
-    GitBranch,
-    Import,
-    ListTodoIcon,
-    ScanEyeIcon,
-    Shield,
-    Workflow,
-    Zap,
-} from 'lucide-react'
+import { Book, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
-import { FeatureCard } from '@/components/FeatureCard'
-import { ProviderBridge } from '@/components/ProviderBridge'
-import AnimatedGridPattern from '@/components/ui/animated-grid-pattern'
-import BlurIn from '@/components/ui/blur-in'
-import BoxReveal from '@/components/ui/box-reveal'
-import { Button } from '@/components/ui/button'
-import DotPattern from '@/components/ui/dot-pattern'
-import HyperText from '@/components/ui/hyper-text'
-import Meteors from '@/components/ui/meteors'
-import { cn } from '@/lib/utils'
+import { CommandLogEntry } from '@/components/home/CommandLogEntry'
+import { ProviderTerminals } from '@/components/home/ProviderTerminals'
+import { TrafficPanel } from '@/components/home/TrafficPanel'
+import { archivo, chakraPetch, spaceMono } from '@/lib/fonts'
 import { DOORMAN_VERSION } from '@/lib/version'
-import { DoubleArrowDownIcon } from '@radix-ui/react-icons'
-import { FeatureSection } from '../components/FeatureSection'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doorman.griffen.codes'
 
@@ -62,322 +40,333 @@ const jsonLd = {
   screenshot: `${siteUrl}/og-image.jpg`,
 }
 
+const INSTALL_COMMAND = [
+  { value: 'npm', command: 'npm install @gfargo/doorman' },
+  { value: 'yarn', command: 'yarn add @gfargo/doorman' },
+  { value: 'pnpm', command: 'pnpm add @gfargo/doorman' },
+  { value: 'bun', command: 'bun add @gfargo/doorman' },
+]
+
+const COMMANDS = [
+  {
+    number: '01',
+    title: 'Now shipping to Fastly',
+    description:
+      'The same status, diff, and sync workflow you already run for Vercel and Cloudflare, now pointed at Fastly Next‑Gen WAF. No new commands, no new config format, just a third provider.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman sync --provider fastly' },
+      { value: 'yarn', command: 'npx @gfargo/doorman sync --provider fastly' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest sync --provider fastly' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest sync --provider fastly' },
+    ],
+    imageSrc: '/gifs/fastly-sync.gif',
+    imageWidth: 1900,
+    imageHeight: 900,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+        <path d="M13 2 4 14h6l-1 8 9-12h-6z" />
+      </svg>
+    ),
+  },
+  {
+    number: '02',
+    title: 'Sync changes',
+    description:
+      'Synchronize rule packs to Vercel, Cloudflare, and Fastly from the same config. Catch drift with provider-aware diffs before anything ships.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman sync' },
+      { value: 'yarn', command: 'npx @gfargo/doorman sync' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest sync' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest sync' },
+    ],
+    imageSrc: '/gifs/sync.gif',
+    imageWidth: 1900,
+    imageHeight: 700,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M17 2l4 4-4 4M3 12v-2a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 12v2a4 4 0 0 1-4 4H3" />
+      </svg>
+    ),
+  },
+  {
+    number: '03',
+    title: 'Download configs',
+    description:
+      'Export deployed rules from each provider into versioned config files. Keep Vercel, Cloudflare, and Fastly in lockstep with Git history.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman download' },
+      { value: 'yarn', command: 'npx @gfargo/doorman download' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest download' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest download' },
+    ],
+    imageSrc: '/gifs/download.gif',
+    imageWidth: 1900,
+    imageHeight: 800,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16" />
+      </svg>
+    ),
+  },
+  {
+    number: '04',
+    title: 'List rules & IPs',
+    description:
+      'Inspect deployed policies with human-friendly tables or JSON. Filter by provider, environment, and rule group in seconds.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman list' },
+      { value: 'yarn', command: 'npx @gfargo/doorman list' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest list' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest list' },
+    ],
+    imageSrc: '/gifs/list.gif',
+    imageWidth: 1900,
+    imageHeight: 800,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M4 6h16M4 12h16M4 18h10" />
+      </svg>
+    ),
+  },
+  {
+    number: '05',
+    title: 'Validate rules',
+    description:
+      'Validate rule syntax and provider-specific constraints before deployment. Ship with confidence knowing every provider will accept the change.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman validate' },
+      { value: 'yarn', command: 'npx @gfargo/doorman validate' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest validate' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest validate' },
+    ],
+    imageSrc: '/gifs/validate.gif',
+    imageWidth: 1200,
+    imageHeight: 600,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M9 12.5 11 15l4.5-5.5M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" />
+      </svg>
+    ),
+  },
+  {
+    number: '06',
+    title: 'Use templates',
+    description:
+      'Kickstart new protections with templates tuned for Vercel, Cloudflare, and Fastly. Customize and extend policy packs as your edge footprint grows.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman template' },
+      { value: 'yarn', command: 'npx @gfargo/doorman template' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest template' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest template' },
+    ],
+    imageSrc: '/gifs/template-picker.gif',
+    imageWidth: 1200,
+    imageHeight: 600,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM14 3v5h5" />
+      </svg>
+    ),
+  },
+  {
+    number: '07',
+    title: 'Adopt existing rules',
+    description:
+      'Already have rules configured by hand in the Vercel dashboard? Download them into a versioned config, validate the result, and commit. No rework required.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman download' },
+      { value: 'yarn', command: 'npx @gfargo/doorman download' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest download' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest download' },
+    ],
+    imageSrc: '/gifs/import-existing.gif',
+    imageWidth: 1900,
+    imageHeight: 900,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+      </svg>
+    ),
+  },
+]
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div
+      className={`${chakraPetch.variable} ${archivo.variable} ${spaceMono.variable} min-h-screen bg-[#0a0d11] text-[#e7edf3]`}
+      style={{ fontFamily: 'var(--font-archivo)' }}
+    >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <DotPattern
-        width={20}
-        height={20}
-        cx={1}
-        cy={1}
-        cr={1}
-        className={cn('[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] ')}
-      />
-      <main className="">
-        <section className="container px-4 md:px-0 mx-auto relative text-center py-24 mb-16 overflow-hidden">
-          <div className="relative z-10">
-            <div className="mx-auto mb-8 w-fit rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700">
-              Doorman v{DOORMAN_VERSION}{' '}
-              <span className="ml-1 font-normal text-emerald-600">Now with Fastly Next-Gen WAF support</span>
-            </div>
-            <BlurIn
-              word="Where W▲F meets .config"
-              className="text-6xl font-bold mb-6 text-black dark:text-white bg-gradient-to-b from-black to-gray-900/90 bg-clip-text text-center leading-none text-transparent dark:from-white dark:to-slate-900/10"
-            />
-            <p className="text-lg text-gray-600 mt-8 md:mt-0 max-w-2xl mx-auto">
-              Manage{' '}
-              <Link
-                className="text-gray-800 underline hover:text-gray-400 hover:no-underline"
-                href="https://vercel.com/docs/security/vercel-firewall"
-                target="_blank"
-              >
-                Vercel Firewall
-              </Link>
-              ,{' '}
-              <Link
-                className="text-gray-800 underline hover:text-gray-400 hover:no-underline"
-                href="https://developers.cloudflare.com/waf"
-                target="_blank"
-              >
-                Cloudflare security policies
-              </Link>
-              , or{' '}
-              <Link
-                className="text-gray-800 underline hover:text-gray-400 hover:no-underline"
-                href="https://www.fastly.com/documentation/guides/next-gen-waf/"
-                target="_blank"
-              >
-                Fastly Next-Gen WAF
-              </Link>{' '}
-              from a single file.
-            </p>
-            <div className="mt-10 mb-12 max-w-2xl mx-auto rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-[1px] shadow-lg">
-              <div className="rounded-3xl bg-slate-950/90 px-6 py-5 text-left">
-                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">
-                  <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  Doorman v{DOORMAN_VERSION} — Available Now
-                </div>
-                <p className="mt-1.5 text-sm text-slate-100">
-                  Multi-provider WAF automation wired directly into your version control and CI/CD workflows.
-                </p>
-              </div>
-            </div>
-            <div className="w-full flex justify-center">
-              <CopyableCommand
-                command={[
-                  { value: 'npm', command: 'npm install @gfargo/doorman' },
-                  { value: 'yarn', command: 'yarn add @gfargo/doorman' },
-                  { value: 'pnpm', command: 'pnpm add @gfargo/doorman' },
-                  { value: 'bun', command: 'bun add @gfargo/doorman' },
-                ]}
-              />
-            </div>
-          </div>
-        </section>
 
-        <section className="container px-4 md:px-0 mx-auto grid grid-cols-1 justify-items-center lg:grid-cols-3 gap-8 space-y-8 lg:space-y-0 mb-24 xl:px-4">
-          <FeatureCard
-            icon={<GitBranch className="w-6 h-6" />}
-            title="Multi-Provider Control"
-            description="Ship one policy pack to Vercel, Cloudflare, and Fastly with provider-specific overrides when you need them."
-            index={0}
+      <main className="[&_h1]:font-[family-name:var(--font-chakra)] [&_h2]:font-[family-name:var(--font-chakra)] [&_h1]:uppercase [&_h2]:uppercase">
+        {/* Hero */}
+        <section className="relative overflow-hidden px-4 pb-20 pt-16 md:px-0 md:pb-24 md:pt-24">
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 1000px 560px at 82% 8%, rgba(79,195,232,0.1), transparent 60%)',
+            }}
           />
-          <FeatureCard
-            icon={<Workflow className="w-6 h-6" />}
-            title="Automated Workflows"
-            description="Promote firewall changes through pull requests, previews, and CI/CD with guardrails built in."
-            index={1}
-          />
-          <FeatureCard
-            icon={<Shield className="w-6 h-6" />}
-            title="Confident Governance"
-            description="Audit every change, enforce review policies, and keep environments consistent across providers."
-            index={2}
-          />
-        </section>
+          <div className="container relative mx-auto grid items-center gap-12 md:grid-cols-[1.12fr_0.88fr]">
+            <div className="text-center md:text-left">
+              <span className="inline-flex items-center gap-2 rounded-[3px] border border-[#4fc3e8]/20 bg-[#4fc3e8]/[0.05] px-4 py-2 font-[family-name:var(--font-space-mono)] text-[0.68rem] uppercase tracking-wide text-[#93e2ff]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#39e075] shadow-[0_0_8px_#39e075]" />
+                Now supporting Fastly Next&#8209;Gen WAF
+              </span>
 
-        <section className="container px-4 md:px-0 mx-auto mb-24">
-          <div className="mx-auto mb-8 max-w-2xl text-center">
-            <h2 className="text-2xl font-bold text-black md:text-3xl">Write it once. Enforce it everywhere.</h2>
-            <p className="mt-3 text-gray-600">
-              doorman is the source of truth. Vercel gets the rule as-is; Cloudflare gets it translated into a
-              Wirefilter expression; Fastly gets a Next-Gen WAF rule &mdash; same intent, provider-native syntax.
-            </p>
-          </div>
-          <ProviderBridge />
-        </section>
+              <h1 className="mt-6 text-[2.6rem] leading-[1.02] tracking-tight md:text-[3.5rem] lg:text-[4.4rem]">
+                Where W<span className="text-[#93e2ff]">&#9650;</span>F meets .config
+              </h1>
 
-        <section className="container px-4 md:px-0  mx-auto mb-24 pb-16 relative overflow-hidden">
-          <AnimatedGridPattern
-            numSquares={100}
-            maxOpacity={0.15}
-            duration={3}
-            repeatDelay={1}
-            className={cn(
-              '[mask-image:radial-gradient(600px_circle_at_center,white,transparent)] z-0',
-              'inset-x-0 inset-y-[-30%] h-[180%] skew-y-12',
-            )}
-          />
-
-          <div className="my-16 text-center text-gray-500 flex self-center flex-col justify-center items-center">
-            <HyperText className="text-xs font-bold dark:text-white w-auto" text={'FEATURES'} />
-            <Link href="#features">
-              <DoubleArrowDownIcon className="w-3 h-3 mt-3" />
-            </Link>
-          </div>
-          <div className="space-y-24 relative z-10 pb-24 lg:px-8" id="features">
-            <FeatureSection
-              title="Now Shipping to Fastly"
-              direction="right"
-              description="The same status, diff, and sync workflow you already run for Vercel and Cloudflare — now pointed at Fastly Next-Gen WAF. No new commands, no new config format, just a third provider."
-              icon={<Zap className="w-6 h-6" style={{ color: '#FF282D' }} />}
-              imageSrc="/gifs/fastly-sync.gif"
-              imageWidth={1900}
-              imageHeight={900}
-              command={[
-                { value: 'npm', command: 'npx @gfargo/doorman sync --provider fastly' },
-                { value: 'yarn', command: 'npx @gfargo/doorman sync --provider fastly' },
-                {
-                  value: 'pnpm',
-                  command: 'pnpm dlx @gfargo/doorman@latest sync --provider fastly',
-                },
-                {
-                  value: 'bun',
-                  command: 'bunx --bun @gfargo/doorman@latest sync --provider fastly',
-                },
-              ]}
-            />
-            <FeatureSection
-              title="Sync Changes"
-              description="Synchronize rule packs to Vercel, Cloudflare, and Fastly from the same config. Catch drift with provider-aware diffs before anything ships."
-              icon={<FolderSyncIcon className="w-6 h-6" />}
-              imageSrc="/gifs/sync.gif"
-              imageWidth={1900}
-              imageHeight={700}
-              command={[
-                { value: 'npm', command: 'npx @gfargo/doorman sync' },
-                { value: 'yarn', command: 'npx @gfargo/doorman sync' },
-                {
-                  value: 'pnpm',
-                  command: 'pnpm dlx @gfargo/doorman@latest sync',
-                },
-                {
-                  value: 'bun',
-                  command: 'bunx --bun @gfargo/doorman@latest sync',
-                },
-              ]}
-            />
-            <FeatureSection
-              title="Download Configs"
-              direction="right"
-              description="Export deployed rules from each provider into versioned config files. Keep Vercel, Cloudflare, and Fastly in lockstep with Git history."
-              icon={<DownloadCloudIcon className="w-6 h-6" />}
-              imageSrc="/gifs/download.gif"
-              imageWidth={1900}
-              imageHeight={800}
-              command={[
-                { value: 'npm', command: 'npx @gfargo/doorman download' },
-                { value: 'yarn', command: 'npx @gfargo/doorman download' },
-                {
-                  value: 'pnpm',
-                  command: 'pnpm dlx @gfargo/doorman@latest download',
-                },
-                {
-                  value: 'bun',
-                  command: 'bunx --bun @gfargo/doorman@latest download',
-                },
-              ]}
-            />
-            <FeatureSection
-              title="List Rules & IPs"
-              description="Inspect deployed policies with human-friendly tables or JSON. Filter by provider, environment, and rule group in seconds."
-              icon={<ListTodoIcon className="w-6 h-6" />}
-              imageSrc="/gifs/list.gif"
-              imageWidth={1900}
-              imageHeight={800}
-              command={[
-                { value: 'npm', command: 'npx @gfargo/doorman list' },
-                { value: 'yarn', command: 'npx @gfargo/doorman list' },
-                {
-                  value: 'pnpm',
-                  command: 'pnpm dlx @gfargo/doorman@latest list',
-                },
-                {
-                  value: 'bun',
-                  command: 'bunx --bun @gfargo/doorman@latest list',
-                },
-              ]}
-            />
-            <FeatureSection
-              title="Validate Rules"
-              direction="right"
-              description="Validate rule syntax and provider-specific constraints before deployment. Ship with confidence knowing every WAF will accept the change."
-              icon={<ScanEyeIcon className="w-6 h-6" />}
-              imageSrc="/gifs/validate.gif"
-              imageWidth={1200}
-              imageHeight={600}
-              command={[
-                { value: 'npm', command: 'npx @gfargo/doorman validate' },
-                { value: 'yarn', command: 'npx @gfargo/doorman validate' },
-                {
-                  value: 'pnpm',
-                  command: 'pnpm dlx @gfargo/doorman@latest validate',
-                },
-                {
-                  value: 'bun',
-                  command: 'bunx --bun @gfargo/doorman@latest validate',
-                },
-              ]}
-            />
-            <FeatureSection
-              title="Use Templates"
-              description="Kickstart new protections with templates tuned for Vercel, Cloudflare, and Fastly. Customize and extend policy packs as your edge footprint grows."
-              icon={<FileJsonIcon className="w-6 h-6" />}
-              imageSrc="/gifs/template-picker.gif"
-              imageWidth={1200}
-              imageHeight={600}
-              command={[
-                { value: 'npm', command: 'npx @gfargo/doorman template' },
-                { value: 'yarn', command: 'npx @gfargo/doorman template' },
-                {
-                  value: 'pnpm',
-                  command: 'pnpm dlx @gfargo/doorman@latest template',
-                },
-                {
-                  value: 'bun',
-                  command: 'bunx --bun @gfargo/doorman@latest template',
-                },
-              ]}
-            />
-            <FeatureSection
-              title="Adopt Existing Rules"
-              direction="right"
-              description="Already have rules configured by hand in the Vercel dashboard? Download them into a versioned config, validate the result, and commit — no rework required to bring an existing project under doorman."
-              icon={<Import className="w-6 h-6" />}
-              imageSrc="/gifs/import-existing.gif"
-              imageWidth={1900}
-              imageHeight={900}
-              command={[
-                { value: 'npm', command: 'npx @gfargo/doorman download' },
-                { value: 'yarn', command: 'npx @gfargo/doorman download' },
-                {
-                  value: 'pnpm',
-                  command: 'pnpm dlx @gfargo/doorman@latest download',
-                },
-                {
-                  value: 'bun',
-                  command: 'bunx --bun @gfargo/doorman@latest download',
-                },
-              ]}
-            />
-          </div>
-        </section>
-
-        <section className="bg-slate-950 text-primary-foreground p-8 py-16 text-center relative overflow-hidden">
-          <div className="z-0 relative opacity-70">
-            <Meteors number={12} />
-          </div>
-          <div className="z-10 relative">
-            <div className="flex flex-col items-center justify-center gap-4">
-              <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.5}>
-                <h2 className="text-2xl font-bold">Get Started with Doorman v{DOORMAN_VERSION}</h2>
-              </BoxReveal>
-              <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.5}>
-                <p className="text-gray-400 mb-6">
-                  Bring Vercel, Cloudflare, and Fastly WAF automation into the same review process your team already
-                  trusts.
-                </p>
-              </BoxReveal>
-              <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.6}>
-                <div className="flex flex-col items-center space-y-8">
-                  <div className="flex justify-center space-x-4">
-                    <Button asChild variant="outline" className="bg-inherit">
-                      <Link href="/docs">
-                        <Book className="w-5 h-5 mr-2" />
-                        View Docs
-                      </Link>
-                    </Button>
-                    <Button asChild variant="ghost">
-                      <Link href="/docs/getting-started">
-                        <ChevronRight className="w-5 h-5 mr-2" />
-                        Getting Started
-                      </Link>
-                    </Button>
-                  </div>
+              <p className="mx-auto mt-6 max-w-[480px] text-[1rem] text-[#8b98a5] md:mx-0 md:text-[1.1rem]">
+                One config decides what gets through. Doorman enforces the same rules on{' '}
+                <strong className="font-semibold text-[#e7edf3]">
                   <Link
-                    href="https://github.com/gfargo/doorman/tree/main/examples"
-                    className="text-slate-600 hover:underline inline-flex items-center"
+                    className="underline decoration-[#2a333c] underline-offset-4 hover:decoration-[#93e2ff]"
+                    href="https://vercel.com/docs/security/vercel-firewall"
+                    target="_blank"
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    See Example Configurations
+                    Vercel Firewall
                   </Link>
-                </div>
-              </BoxReveal>
+                </strong>
+                ,{' '}
+                <strong className="font-semibold text-[#e7edf3]">
+                  <Link
+                    className="underline decoration-[#2a333c] underline-offset-4 hover:decoration-[#93e2ff]"
+                    href="https://developers.cloudflare.com/waf"
+                    target="_blank"
+                  >
+                    Cloudflare WAF
+                  </Link>
+                </strong>
+                , and{' '}
+                <strong className="font-semibold text-[#e7edf3]">
+                  <Link
+                    className="underline decoration-[#2a333c] underline-offset-4 hover:decoration-[#93e2ff]"
+                    href="https://www.fastly.com/documentation/guides/next-gen-waf/"
+                    target="_blank"
+                  >
+                    Fastly Next&#8209;Gen WAF
+                  </Link>
+                </strong>
+                .
+              </p>
+
+              <div className="mt-8 flex justify-center md:justify-start">
+                <CopyableCommand command={INSTALL_COMMAND} dark />
+              </div>
+
+              <p className="mt-6 font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-wide text-[#4e5a66]">
+                System status: <span className="text-[#39e075]">&#9679; Operational</span>{' '}
+                <span className="mx-1.5">&middot;</span> Doorman v{DOORMAN_VERSION}
+              </p>
+            </div>
+
+            <div className="flex justify-center">
+              <TrafficPanel />
+            </div>
+          </div>
+        </section>
+
+        <ScanDivider />
+
+        {/* Providers */}
+        <section className="bg-[#050708] px-4 py-16 md:px-0 md:py-24" id="providers">
+          <div className="container mx-auto">
+            <div className="mx-auto mb-12 max-w-[620px] text-center">
+              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
+                Supported providers
+              </span>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">One rule. Three providers.</h2>
+              <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
+                doorman is the source of truth. Vercel gets the rule as-is. Cloudflare gets a Wirefilter expression.
+                Fastly gets a Next-Gen WAF rule.
+              </p>
+            </div>
+
+            <ProviderTerminals />
+          </div>
+        </section>
+
+        <ScanDivider />
+
+        {/* Commands */}
+        <section className="px-4 py-16 md:px-0 md:py-24" id="features">
+          <div className="container mx-auto">
+            <div className="mx-auto mb-16 max-w-[620px] text-center">
+              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
+                Commands
+              </span>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">What doorman does</h2>
+              <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
+                Every doorman command, explained. Copy any line straight into your terminal.
+              </p>
+            </div>
+
+            <div>
+              {COMMANDS.map((entry, i) => (
+                <CommandLogEntry key={entry.number} {...entry} reverse={i % 2 === 1} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section
+          className="border-t border-white/[0.08] bg-[#050708] px-4 py-16 text-center md:px-0 md:py-24"
+          style={{
+            backgroundImage: 'radial-gradient(ellipse 800px 500px at 50% 100%, rgba(79,195,232,0.1), transparent 70%)',
+          }}
+        >
+          <div className="container mx-auto">
+            <h2 className="text-[1.9rem] md:text-[3rem]">Rules enforced.</h2>
+            <p className="mx-auto mt-4 mb-9 max-w-[480px] text-[#8b98a5]">
+              Bring Vercel, Cloudflare, and Fastly WAF automation into the same review process your team already
+              trusts.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/docs"
+                className="inline-flex items-center gap-2 rounded-[3px] bg-[#4fc3e8] px-6 py-3 font-[family-name:var(--font-space-mono)] text-[0.82rem] uppercase tracking-wide text-[#0a0d11] transition-transform hover:-translate-y-0.5 hover:bg-[#93e2ff]"
+              >
+                <Book className="h-4 w-4" />
+                View docs
+              </Link>
+              <Link
+                href="/docs/getting-started"
+                className="inline-flex items-center gap-2 rounded-[3px] border border-[#2a333c] px-6 py-3 font-[family-name:var(--font-space-mono)] text-[0.82rem] uppercase tracking-wide text-[#8b98a5] transition-colors hover:border-[#1c6f8c] hover:text-[#e7edf3]"
+              >
+                Getting started
+              </Link>
+              <Link
+                href="https://github.com/gfargo/doorman/tree/main/examples"
+                className="inline-flex items-center gap-2 rounded-[3px] border border-[#2a333c] px-6 py-3 font-[family-name:var(--font-space-mono)] text-[0.82rem] uppercase tracking-wide text-[#8b98a5] transition-colors hover:border-[#1c6f8c] hover:text-[#e7edf3]"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Example configs
+              </Link>
             </div>
           </div>
         </section>
       </main>
+    </div>
+  )
+}
+
+function ScanDivider() {
+  return (
+    <div className="relative h-[84px] overflow-hidden border-y border-white/[0.08] bg-[#050708]">
+      <div
+        className="absolute inset-0 m-auto h-[30px] max-w-[1000px]"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(90deg, #2a333c 0 2px, transparent 2px 7px, rgba(231,237,243,0.08) 7px 8px, transparent 8px 15px, #2a333c 15px 18px, transparent 18px 26px)',
+          opacity: 0.7,
+          WebkitMaskImage: 'linear-gradient(90deg, transparent, black 12%, black 88%, transparent)',
+          maskImage: 'linear-gradient(90deg, transparent, black 12%, black 88%, transparent)',
+        }}
+      />
     </div>
   )
 }

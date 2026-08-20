@@ -5,7 +5,7 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { useState } from 'react'
 
-export const HeaderNavbar = () => {
+export const HeaderNavbar = ({ dark = false }: { dark?: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -18,9 +18,11 @@ export const HeaderNavbar = () => {
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className={cn('p-2 text-gray-400 hover:text-black transition-colors', {
-              'text-black': isMenuOpen,
-            })}
+            className={cn(
+              'p-2 transition-colors',
+              dark ? 'text-[#8b98a5] hover:text-[#e7edf3]' : 'text-gray-400 hover:text-black',
+              { 'text-black': isMenuOpen && !dark, 'text-[#e7edf3]': isMenuOpen && dark },
+            )}
             aria-label="Toggle Menu"
           >
             <svg
@@ -35,33 +37,51 @@ export const HeaderNavbar = () => {
           </button>
         </div>
         <div className="hidden md:flex items-center ">
-          <DesktopLinks />
+          <DesktopLinks dark={dark} />
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden bg-white absolute left-0 border-t w-full border-b shadow-lg z-10">
-          <MobileLinks setIsMenuOpen={setIsMenuOpen} />
+        <div
+          className={cn(
+            'md:hidden absolute left-0 border-t w-full border-b shadow-lg z-10',
+            dark ? 'bg-[#0a0d11] border-white/[0.08]' : 'bg-white',
+          )}
+        >
+          <MobileLinks setIsMenuOpen={setIsMenuOpen} dark={dark} />
         </div>
       )}
     </div>
   )
 }
 
-const DesktopLinks = () => (
+const DesktopLinks = ({ dark }: { dark: boolean }) => (
   <>
     <div className="space-x-4 ml-8 flex items-center">
-      <Link href="/docs" className="text-gray-600 hover:text-black transition-colors">
+      <Link
+        href="/docs"
+        className={
+          dark
+            ? 'font-[family-name:var(--font-space-mono)] text-[0.78rem] uppercase tracking-wide text-[#8b98a5] transition-colors hover:text-[#93e2ff]'
+            : 'text-gray-600 hover:text-black transition-colors'
+        }
+      >
         Docs
       </Link>
       <Link
         href="/docs/getting-started"
-        className="bg-black text-white px-4 py-2 rounded-md transition-colors hover:bg-gray-800"
+        className={
+          dark
+            ? 'inline-flex items-center gap-2 rounded-[3px] bg-[#4fc3e8] px-4 py-2 font-[family-name:var(--font-space-mono)] text-[0.78rem] uppercase tracking-wide text-[#0a0d11] transition-colors hover:bg-[#93e2ff]'
+            : 'bg-black text-white px-4 py-2 rounded-md transition-colors hover:bg-gray-800'
+        }
       >
         Get Started
       </Link>
       <Link
         href="https://github.com/gfargo/doorman"
-        className="text-gray-600 hover:text-black transition-colors"
+        className={
+          dark ? 'text-[#8b98a5] transition-colors hover:text-[#93e2ff]' : 'text-gray-600 hover:text-black transition-colors'
+        }
       >
         <GitHubLogoIcon className="w-6 h-6" />
         <span className="sr-only">GitHub</span>
@@ -70,26 +90,42 @@ const DesktopLinks = () => (
   </>
 )
 
-const MobileLinks = ({ setIsMenuOpen }: { setIsMenuOpen: (isOpen: boolean) => void }) => (
+const MobileLinks = ({
+  setIsMenuOpen,
+  dark,
+}: {
+  setIsMenuOpen: (isOpen: boolean) => void
+  dark: boolean
+}) => (
   <div className="flex flex-col space-y-4 p-4">
     <Link
       href="/docs"
       onClick={() => setIsMenuOpen(false)}
-      className="text-gray-600 hover:text-black transition-colors"
+      className={
+        dark ? 'text-[#8b98a5] hover:text-[#93e2ff] transition-colors' : 'text-gray-600 hover:text-black transition-colors'
+      }
     >
       Docs <span className="sr-only">Documentation</span>
     </Link>
     <Link
       href="/docs/getting-started"
       onClick={() => setIsMenuOpen(false)}
-      className="bg-black text-white px-4 py-2 rounded-md text-center transition-colors hover:bg-gray-800"
+      className={
+        dark
+          ? 'bg-[#4fc3e8] text-[#0a0d11] px-4 py-2 rounded-[3px] text-center transition-colors hover:bg-[#93e2ff]'
+          : 'bg-black text-white px-4 py-2 rounded-md text-center transition-colors hover:bg-gray-800'
+      }
     >
       Get Started
     </Link>
     <Link
       href="https://github.com/gfargo/doorman"
       target="_blank"
-      className="text-gray-600 hover:text-black transition-colors flex items-center"
+      className={
+        dark
+          ? 'text-[#8b98a5] hover:text-[#93e2ff] transition-colors flex items-center'
+          : 'text-gray-600 hover:text-black transition-colors flex items-center'
+      }
     >
       View on GitHub <GitHubLogoIcon className="w-6 h-6 ml-1.5" />
     </Link>

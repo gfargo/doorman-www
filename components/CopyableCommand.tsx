@@ -10,9 +10,11 @@ interface Props {
     value: string
     command: string
   }[]
+  /** Homepage dark theme. Only restyles the trigger/pre chrome — the select popover keeps its default (light) theme. */
+  dark?: boolean
 }
 
-export function CopyableCommand({ command }: Props) {
+export function CopyableCommand({ command, dark = false }: Props) {
   const { toast } = useToast()
 
   const [selectedManager, setSelectedManager] = useState<Props['command'][0]>()
@@ -47,7 +49,11 @@ export function CopyableCommand({ command }: Props) {
     <div className="w-full max-w-lg">
       <div className="relative">
         <pre
-          className="bg-gray-100 p-4 rounded-md font-mono text-sm select-all"
+          className={
+            dark
+              ? 'rounded-[4px] border border-[#2a333c] bg-[#131920] p-4 pr-12 font-mono text-sm text-[#e7edf3] select-all'
+              : 'bg-gray-100 p-4 rounded-md font-mono text-sm select-all'
+          }
           onClick={(event) => {
             event.currentTarget.focus()
             copyToClipboard()
@@ -62,7 +68,7 @@ export function CopyableCommand({ command }: Props) {
               setSelectedManager(command.find((cmd) => cmd.value === value) || command[0])
             }}
           >
-            <SelectTrigger className="text-sm">
+            <SelectTrigger className={dark ? 'text-sm border-[#2a333c] text-[#8b98a5]' : 'text-sm'}>
               {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             </SelectTrigger>
             <SelectContent>
