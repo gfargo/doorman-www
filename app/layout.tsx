@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: '%s | Doorman',
   },
   description:
-    'Manage Vercel and Cloudflare WAF rules as code with version control and CI/CD integration. Sync, download, validate, and deploy security configurations across providers.',
+    'Manage Vercel, Cloudflare, and Fastly WAF rules as code with version control and CI/CD integration. Sync, download, validate, and deploy security configurations across providers.',
   keywords: [
     'Vercel',
     'Firewall',
@@ -30,6 +30,8 @@ export const metadata: Metadata = {
     'CI/CD',
     'Version Control',
     'Cloudflare',
+    'Fastly',
+    'Next-Gen WAF',
     'WAF Automation',
     'Firewall Management',
   ],
@@ -52,7 +54,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     title: 'Doorman - Multi-Provider WAF Automation as Code',
-    description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    description:
+      'Manage Vercel, Cloudflare, and Fastly firewall rules as code with version control and CI/CD integration.',
     siteName: 'Doorman',
     images: [
       {
@@ -66,7 +69,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Doorman - Multi-Provider WAF Automation as Code',
-    description: 'Manage Vercel and Cloudflare firewall rules as code with version control and CI/CD integration.',
+    description:
+      'Manage Vercel, Cloudflare, and Fastly firewall rules as code with version control and CI/CD integration.',
     images: ['/og-image.jpg'],
     creator: '@vercel',
   },

@@ -11,6 +11,7 @@ import {
     ScanEyeIcon,
     Shield,
     Workflow,
+    Zap,
 } from 'lucide-react'
 import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
@@ -37,7 +38,7 @@ const jsonLd = {
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Cross-platform',
   description:
-    'Manage Vercel and Cloudflare WAF rules as code with version control and CI/CD integration. CLI tool for syncing, downloading, validating, and deploying multi-provider security configurations.',
+    'Manage Vercel, Cloudflare, and Fastly WAF rules as code with version control and CI/CD integration. CLI tool for syncing, downloading, validating, and deploying multi-provider security configurations.',
   url: siteUrl,
   offers: {
     '@type': 'Offer',
@@ -45,7 +46,7 @@ const jsonLd = {
     priceCurrency: 'USD',
   },
   featureList: [
-    'Unified Vercel and Cloudflare WAF management',
+    'Unified Vercel, Cloudflare, and Fastly WAF management',
     'Version control and code review for firewall rules',
     'CI/CD automation for security deployments',
     'Provider-aware sync and drift detection',
@@ -78,7 +79,7 @@ export default function Home() {
           <div className="relative z-10">
             <div className="mx-auto mb-8 w-fit rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700">
               Doorman v{DOORMAN_VERSION}{' '}
-              <span className="ml-1 font-normal text-emerald-600">Now with Cloudflare WAF support</span>
+              <span className="ml-1 font-normal text-emerald-600">Now with Fastly Next-Gen WAF support</span>
             </div>
             <BlurIn
               word="Where W▲F meets .config"
@@ -92,14 +93,22 @@ export default function Home() {
                 target="_blank"
               >
                 Vercel Firewall
-              </Link>{' '}
-              or{' '}
+              </Link>
+              ,{' '}
               <Link
                 className="text-gray-800 underline hover:text-gray-400 hover:no-underline"
                 href="https://developers.cloudflare.com/waf"
                 target="_blank"
               >
                 Cloudflare security policies
+              </Link>
+              , or{' '}
+              <Link
+                className="text-gray-800 underline hover:text-gray-400 hover:no-underline"
+                href="https://www.fastly.com/documentation/guides/next-gen-waf/"
+                target="_blank"
+              >
+                Fastly Next-Gen WAF
               </Link>{' '}
               from a single file.
             </p>
@@ -131,7 +140,7 @@ export default function Home() {
           <FeatureCard
             icon={<GitBranch className="w-6 h-6" />}
             title="Multi-Provider Control"
-            description="Ship one policy pack to Vercel and Cloudflare with provider-specific overrides when you need them."
+            description="Ship one policy pack to Vercel, Cloudflare, and Fastly with provider-specific overrides when you need them."
             index={0}
           />
           <FeatureCard
@@ -153,7 +162,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-black md:text-3xl">Write it once. Enforce it everywhere.</h2>
             <p className="mt-3 text-gray-600">
               doorman is the source of truth. Vercel gets the rule as-is; Cloudflare gets it translated into a
-              Wirefilter expression &mdash; same intent, provider-native syntax.
+              Wirefilter expression; Fastly gets a Next-Gen WAF rule &mdash; same intent, provider-native syntax.
             </p>
           </div>
           <ProviderBridge />
@@ -179,8 +188,29 @@ export default function Home() {
           </div>
           <div className="space-y-24 relative z-10 pb-24 lg:px-8" id="features">
             <FeatureSection
+              title="Now Shipping to Fastly"
+              direction="right"
+              description="The same status, diff, and sync workflow you already run for Vercel and Cloudflare — now pointed at Fastly Next-Gen WAF. No new commands, no new config format, just a third provider."
+              icon={<Zap className="w-6 h-6" style={{ color: '#FF282D' }} />}
+              imageSrc="/gifs/fastly-sync.gif"
+              imageWidth={1900}
+              imageHeight={900}
+              command={[
+                { value: 'npm', command: 'npx @gfargo/doorman sync --provider fastly' },
+                { value: 'yarn', command: 'npx @gfargo/doorman sync --provider fastly' },
+                {
+                  value: 'pnpm',
+                  command: 'pnpm dlx @gfargo/doorman@latest sync --provider fastly',
+                },
+                {
+                  value: 'bun',
+                  command: 'bunx --bun @gfargo/doorman@latest sync --provider fastly',
+                },
+              ]}
+            />
+            <FeatureSection
               title="Sync Changes"
-              description="Synchronize rule packs to Vercel and Cloudflare from the same config. Catch drift with provider-aware diffs before anything ships."
+              description="Synchronize rule packs to Vercel, Cloudflare, and Fastly from the same config. Catch drift with provider-aware diffs before anything ships."
               icon={<FolderSyncIcon className="w-6 h-6" />}
               imageSrc="/gifs/sync.gif"
               imageWidth={1900}
@@ -201,7 +231,7 @@ export default function Home() {
             <FeatureSection
               title="Download Configs"
               direction="right"
-              description="Export deployed rules from each provider into versioned config files. Keep Cloudflare and Vercel in lockstep with Git history."
+              description="Export deployed rules from each provider into versioned config files. Keep Vercel, Cloudflare, and Fastly in lockstep with Git history."
               icon={<DownloadCloudIcon className="w-6 h-6" />}
               imageSrc="/gifs/download.gif"
               imageWidth={1900}
@@ -242,7 +272,7 @@ export default function Home() {
             <FeatureSection
               title="Validate Rules"
               direction="right"
-              description="Validate rule syntax and provider-specific constraints before deployment. Ship with confidence knowing both WAFs will accept the change."
+              description="Validate rule syntax and provider-specific constraints before deployment. Ship with confidence knowing every WAF will accept the change."
               icon={<ScanEyeIcon className="w-6 h-6" />}
               imageSrc="/gifs/validate.gif"
               imageWidth={1200}
@@ -262,7 +292,7 @@ export default function Home() {
             />
             <FeatureSection
               title="Use Templates"
-              description="Kickstart new protections with templates tuned for Vercel and Cloudflare. Customize and extend policy packs as your edge footprint grows."
+              description="Kickstart new protections with templates tuned for Vercel, Cloudflare, and Fastly. Customize and extend policy packs as your edge footprint grows."
               icon={<FileJsonIcon className="w-6 h-6" />}
               imageSrc="/gifs/template-picker.gif"
               imageWidth={1200}
@@ -315,7 +345,8 @@ export default function Home() {
               </BoxReveal>
               <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.5}>
                 <p className="text-gray-400 mb-6">
-                  Bring Cloudflare and Vercel WAF automation into the same review process your team already trusts.
+                  Bring Vercel, Cloudflare, and Fastly WAF automation into the same review process your team already
+                  trusts.
                 </p>
               </BoxReveal>
               <BoxReveal boxColor={'hsl(var(--primary-foreground))'} duration={0.6}>
