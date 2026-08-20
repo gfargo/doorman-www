@@ -2,6 +2,7 @@ import { Book, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
 import { CommandLogEntry } from '@/components/home/CommandLogEntry'
+import { GettingStarted } from '@/components/home/GettingStarted'
 import { ProviderTerminals } from '@/components/home/ProviderTerminals'
 import { TrafficPanel } from '@/components/home/TrafficPanel'
 import { archivo, chakraPetch, spaceMono } from '@/lib/fonts'
@@ -41,10 +42,10 @@ const jsonLd = {
 }
 
 const INSTALL_COMMAND = [
-  { value: 'npm', command: 'npm install @gfargo/doorman' },
-  { value: 'yarn', command: 'yarn add @gfargo/doorman' },
-  { value: 'pnpm', command: 'pnpm add @gfargo/doorman' },
-  { value: 'bun', command: 'bun add @gfargo/doorman' },
+  { value: 'npm', command: 'npm install -g @gfargo/doorman' },
+  { value: 'yarn', command: 'yarn global add @gfargo/doorman' },
+  { value: 'pnpm', command: 'pnpm add -g @gfargo/doorman' },
+  { value: 'bun', command: 'bun add -g @gfargo/doorman' },
 ]
 
 const COMMANDS = [
@@ -271,6 +272,26 @@ export default function Home() {
 
         <ScanDivider />
 
+        {/* Getting started */}
+        <section className="px-4 py-16 md:px-0 md:py-24" id="getting-started">
+          <div className="container mx-auto">
+            <div className="mx-auto mb-14 max-w-[620px] text-center">
+              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
+                Getting started
+              </span>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">Same four steps. Any provider.</h2>
+              <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
+                Install, initialize, connect your provider, ship. The steps don&apos;t change whether you&apos;re on
+                Vercel, Cloudflare, or Fastly, only the credentials do.
+              </p>
+            </div>
+
+            <GettingStarted />
+          </div>
+        </section>
+
+        <ScanDivider />
+
         {/* Providers */}
         <section className="bg-[#050708] px-4 py-16 md:px-0 md:py-24" id="providers">
           <div className="container mx-auto">
@@ -356,17 +377,6 @@ export default function Home() {
 
 function ScanDivider() {
   return (
-    <div className="relative h-[84px] overflow-hidden border-y border-white/[0.08] bg-[#050708]">
-      <div
-        className="absolute inset-0 m-auto h-[30px] max-w-[1000px]"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(90deg, #2a333c 0 2px, transparent 2px 7px, rgba(231,237,243,0.08) 7px 8px, transparent 8px 15px, #2a333c 15px 18px, transparent 18px 26px)',
-          opacity: 0.7,
-          WebkitMaskImage: 'linear-gradient(90deg, transparent, black 12%, black 88%, transparent)',
-          maskImage: 'linear-gradient(90deg, transparent, black 12%, black 88%, transparent)',
-        }}
-      />
-    </div>
+    <div className="mx-auto h-px w-full max-w-[1000px] bg-gradient-to-r from-transparent via-[#4fc3e8]/25 to-transparent" />
   )
 }
