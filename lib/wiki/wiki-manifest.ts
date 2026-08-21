@@ -71,11 +71,19 @@ const WIKI_PAGES: WikiPage[] = [
     description: 'Integrate Doorman into GitHub Actions and other CI/CD pipelines.',
   },
   {
+    slug: 'vercel-setup',
+    title: 'Vercel Setup',
+    wikiPath: 'Vercel-Setup',
+    category: 'Guides',
+    order: 2,
+    description: 'Set up Doorman with Vercel Firewall — credentials, configuration, and deployment.',
+  },
+  {
     slug: 'cloudflare-setup',
     title: 'Cloudflare Setup',
     wikiPath: 'Cloudflare-Setup',
     category: 'Guides',
-    order: 2,
+    order: 3,
     description: 'Set up Doorman with Cloudflare WAF — credentials, configuration, and deployment.',
   },
   {
@@ -83,8 +91,24 @@ const WIKI_PAGES: WikiPage[] = [
     title: 'Cloudflare Migration',
     wikiPath: 'Cloudflare-Migration',
     category: 'Guides',
-    order: 3,
+    order: 4,
     description: 'Migrate firewall rules from Vercel to Cloudflare with automatic rule translation.',
+  },
+  {
+    slug: 'fastly-setup',
+    title: 'Fastly Setup',
+    wikiPath: 'Fastly-Setup',
+    category: 'Guides',
+    order: 5,
+    description: 'Set up Doorman with Fastly Next-Gen WAF — credentials, configuration, and deployment.',
+  },
+  {
+    slug: 'fastly-migration',
+    title: 'Fastly Migration',
+    wikiPath: 'Fastly-Migration',
+    category: 'Guides',
+    order: 6,
+    description: 'Migrate firewall rules from Vercel to Fastly Next-Gen WAF with automatic rule translation.',
   },
 ]
 
