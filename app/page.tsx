@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
 import { CommandLogEntry } from '@/components/home/CommandLogEntry'
 import { GettingStarted } from '@/components/home/GettingStarted'
+import { LiveStats } from '@/components/home/LiveStats'
 import { ProviderTerminals } from '@/components/home/ProviderTerminals'
 import { TrafficPanel } from '@/components/home/TrafficPanel'
 import { archivo, chakraPetch, spaceMono } from '@/lib/fonts'
@@ -342,10 +343,13 @@ export default function Home() {
         >
           <div className="container mx-auto">
             <h2 className="text-[1.9rem] md:text-[3rem]">Rules enforced.</h2>
-            <p className="mx-auto mt-4 mb-9 max-w-[480px] text-[#8b98a5]">
+            <p className="mx-auto mt-4 mb-8 max-w-[480px] text-[#8b98a5]">
               Bring Vercel, Cloudflare, and Fastly WAF automation into the same review process your team already
               trusts.
             </p>
+            <div className="mb-8">
+              <LiveStats />
+            </div>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/docs"
