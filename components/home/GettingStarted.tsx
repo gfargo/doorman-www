@@ -54,7 +54,7 @@ function StepRow({
       <div className="relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-[#4fc3e8] bg-[#0a0d11] font-[family-name:var(--font-chakra)] text-[0.95rem] font-semibold text-[#93e2ff]">
         {index}
       </div>
-      <div className="flex-1 pb-2 pt-1.5">
+      <div className="min-w-0 flex-1 pb-2 pt-1.5">
         <h3 className="font-[family-name:var(--font-chakra)] text-[1.05rem] uppercase tracking-wide text-[#e7edf3]">
           {title}
         </h3>

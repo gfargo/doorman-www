@@ -51,8 +51,8 @@ export function CopyableCommand({ command, dark = false }: Props) {
         <pre
           className={
             dark
-              ? 'rounded-[4px] border border-[#2a333c] bg-[#131920] p-4 pr-12 font-mono text-sm text-[#e7edf3] select-all'
-              : 'bg-gray-100 p-4 rounded-md font-mono text-sm select-all'
+              ? 'overflow-x-auto rounded-[4px] border border-[#2a333c] bg-[#131920] p-4 pr-12 font-mono text-sm text-[#e7edf3] select-all'
+              : 'overflow-x-auto bg-gray-100 p-4 rounded-md font-mono text-sm select-all'
           }
           onClick={(event) => {
             event.currentTarget.focus()

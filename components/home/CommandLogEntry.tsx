@@ -43,7 +43,7 @@ export function CommandLogEntry({
         reverse ? 'md:[&>*:first-child]:order-2' : ''
       }`}
     >
-      <motion.div variants={textAnimation} className="flex flex-col gap-3.5">
+      <motion.div variants={textAnimation} className="flex min-w-0 flex-col gap-3.5">
         <div className="flex items-baseline gap-3">
           <span className="font-[family-name:var(--font-space-mono)] text-[0.72rem] text-[#4e5a66]">
             Log <span className="font-[family-name:var(--font-chakra)] text-[1.05rem] font-semibold text-[#4fc3e8]">{number}</span>
@@ -61,7 +61,7 @@ export function CommandLogEntry({
         <CopyableCommand command={command} dark />
       </motion.div>
 
-      <motion.div variants={imageAnimation}>
+      <motion.div variants={imageAnimation} className="min-w-0">
         <InteractiveImage src={imageSrc} alt={`${title} demo`} width={imageWidth} height={imageHeight} />
       </motion.div>
     </motion.div>

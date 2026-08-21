@@ -53,6 +53,7 @@ export function InteractiveImage({ src, alt, width, height }: InteractiveImagePr
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ perspective: 1200 }}
+      className="w-full min-w-0"
     >
       <motion.div
         ref={ref}
