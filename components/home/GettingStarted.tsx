@@ -102,7 +102,7 @@ export function GettingStarted() {
         <StepRow
           index={3}
           title="Connect your provider"
-          description="The variable names change, the shape doesn't. A token plus one or two IDs, however you already manage secrets."
+          description="The variable names change, the shape doesn't. A token plus one or two IDs, stored however you already manage secrets."
         >
           <div className="flex flex-wrap gap-2">
             {(Object.keys(PROVIDER_CREDS) as ProviderId[]).map((id) => (

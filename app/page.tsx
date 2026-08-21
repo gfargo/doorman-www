@@ -54,7 +54,7 @@ const COMMANDS = [
     number: '01',
     title: 'Now shipping to Fastly',
     description:
-      'The same status, diff, and sync workflow you already run for Vercel and Cloudflare, now pointed at Fastly Next‑Gen WAF. No new commands, no new config format, just a third provider.',
+      'The same status, diff, and sync workflow you already run for Vercel and Cloudflare, now pointed at Fastly Next‑Gen WAF. Same commands, same config format. Just a third provider.',
     command: [
       { value: 'npm', command: 'npx @gfargo/doorman sync --provider fastly' },
       { value: 'yarn', command: 'npx @gfargo/doorman sync --provider fastly' },
@@ -134,7 +134,7 @@ const COMMANDS = [
     number: '05',
     title: 'Validate rules',
     description:
-      'Validate rule syntax and provider-specific constraints before deployment. Ship with confidence knowing every provider will accept the change.',
+      'Validate rule syntax and provider-specific constraints before deployment. Every provider accepts the result before you deploy.',
     command: [
       { value: 'npm', command: 'npx @gfargo/doorman validate' },
       { value: 'yarn', command: 'npx @gfargo/doorman validate' },
@@ -154,7 +154,7 @@ const COMMANDS = [
     number: '06',
     title: 'Use templates',
     description:
-      'Kickstart new protections with templates tuned for Vercel, Cloudflare, and Fastly. Customize and extend policy packs as your edge footprint grows.',
+      'Start new protections from templates tuned for Vercel, Cloudflare, and Fastly. Customize and extend policy packs as you add providers.',
     command: [
       { value: 'npm', command: 'npx @gfargo/doorman template' },
       { value: 'yarn', command: 'npx @gfargo/doorman template' },
@@ -344,8 +344,7 @@ export default function Home() {
           <div className="container mx-auto">
             <h2 className="text-[1.9rem] md:text-[3rem]">Rules enforced.</h2>
             <p className="mx-auto mt-4 mb-8 max-w-[480px] text-[#8b98a5]">
-              Bring Vercel, Cloudflare, and Fastly WAF automation into the same review process your team already
-              trusts.
+              Bring Vercel, Cloudflare, and Fastly WAF automation into the same review process you already use.
             </p>
             <div className="mb-8">
               <LiveStats />
