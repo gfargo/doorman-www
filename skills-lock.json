@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "doorman": {
+      "source": "gfargo/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/security/skills/doorman/SKILL.md",
+      "computedHash": "7c54bf602a1f1d547d05ec6c180eeafd5bfc51c85c94f385680fb9e2b73ce5e1"
+    }
+  }
+}
