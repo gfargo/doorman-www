@@ -274,42 +274,6 @@ export default function Home() {
 
         <ScanDivider />
 
-        {/* Getting started */}
-        <section className="px-4 py-16 md:px-0 md:py-24" id="getting-started">
-          <div className="container mx-auto">
-            <div className="mx-auto mb-14 max-w-[620px] text-center">
-              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
-                Getting started
-              </span>
-              <h2 className="text-[1.8rem] md:text-[2.75rem]">Set up your WAF in four steps.</h2>
-              <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
-                Install, initialize, connect your provider, ship. The steps don&apos;t change whether you&apos;re on
-                Vercel, Cloudflare, or Fastly, only the credentials do.
-              </p>
-            </div>
-
-            <GettingStarted />
-          </div>
-        </section>
-
-        <ScanDivider />
-
-        {/* Agent skill */}
-        <section className="px-4 py-16 md:px-0 md:py-24" id="agent-skill">
-          <div className="container mx-auto">
-            <div className="mx-auto mb-14 max-w-[620px] text-center">
-              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
-                Agent skill
-              </span>
-              <h2 className="text-[1.8rem] md:text-[2.75rem]">One skill. Any coding agent.</h2>
-            </div>
-
-            <AgentSkill />
-          </div>
-        </section>
-
-        <ScanDivider />
-
         {/* Providers */}
         <section className="bg-[#050708] px-4 py-16 md:px-0 md:py-24" id="providers">
           <div className="container mx-auto">
@@ -348,6 +312,42 @@ export default function Home() {
                 <CommandLogEntry key={entry.number} {...entry} reverse={i % 2 === 1} />
               ))}
             </div>
+          </div>
+        </section>
+
+        <ScanDivider />
+
+        {/* Getting started */}
+        <section className="px-4 py-16 md:px-0 md:py-24" id="getting-started">
+          <div className="container mx-auto">
+            <div className="mx-auto mb-14 max-w-[620px] text-center">
+              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
+                Getting started
+              </span>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">Set up your WAF in four steps.</h2>
+              <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
+                Install, initialize, connect your provider, ship. The steps don&apos;t change whether you&apos;re on
+                Vercel, Cloudflare, or Fastly, only the credentials do.
+              </p>
+            </div>
+
+            <GettingStarted />
+          </div>
+        </section>
+
+        <ScanDivider />
+
+        {/* Agent skill */}
+        <section className="px-4 py-16 md:px-0 md:py-24" id="agent-skill">
+          <div className="container mx-auto">
+            <div className="mx-auto mb-14 max-w-[620px] text-center">
+              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
+                Agent skill
+              </span>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">One skill. Any coding agent.</h2>
+            </div>
+
+            <AgentSkill />
           </div>
         </section>
 
