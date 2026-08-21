@@ -81,7 +81,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body className={`${inter.className} antialiased overflow-x-hidden`}>
         <Header />
         <main className="relative z-10">{children}</main>

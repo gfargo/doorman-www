@@ -37,7 +37,7 @@ export const Footer = () => {
                 isHome ? 'text-[#8b98a5] hover:text-[#93e2ff] transition-colors' : 'text-gray-600 hover:text-black transition-colors'
               }
             >
-              <DiscordLogoIcon className="w-6 h-6" />
+              <DiscordLogoIcon className="w-4 h-4" />
               <span className="sr-only">Discord</span>
             </Link>
             <Link
@@ -46,7 +46,7 @@ export const Footer = () => {
                 isHome ? 'text-[#8b98a5] hover:text-[#93e2ff] transition-colors' : 'text-gray-600 hover:text-black transition-colors'
               }
             >
-              <BugIcon className="w-6 h-6" />
+              <BugIcon className="w-4 h-4" />
               <span className="sr-only">Issues</span>
             </Link>
             <Link
@@ -55,7 +55,7 @@ export const Footer = () => {
                 isHome ? 'text-[#8b98a5] hover:text-[#93e2ff] transition-colors' : 'text-gray-600 hover:text-black transition-colors'
               }
             >
-              <GitHubLogoIcon className="w-6 h-6" />
+              <GitHubLogoIcon className="w-4 h-4" />
               <span className="sr-only">GitHub</span>
             </Link>
           </div>

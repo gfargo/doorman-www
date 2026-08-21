@@ -1,6 +1,7 @@
 import { Book, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { CopyableCommand } from '../components/CopyableCommand'
+import { AgentSkill } from '@/components/home/AgentSkill'
 import { CommandLogEntry } from '@/components/home/CommandLogEntry'
 import { GettingStarted } from '@/components/home/GettingStarted'
 import { LiveStats } from '@/components/home/LiveStats'
@@ -280,7 +281,7 @@ export default function Home() {
               <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
                 Getting started
               </span>
-              <h2 className="text-[1.8rem] md:text-[2.75rem]">Same four steps. Any provider.</h2>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">Set up your WAF in four steps.</h2>
               <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
                 Install, initialize, connect your provider, ship. The steps don&apos;t change whether you&apos;re on
                 Vercel, Cloudflare, or Fastly, only the credentials do.
@@ -288,6 +289,22 @@ export default function Home() {
             </div>
 
             <GettingStarted />
+          </div>
+        </section>
+
+        <ScanDivider />
+
+        {/* Agent skill */}
+        <section className="px-4 py-16 md:px-0 md:py-24" id="agent-skill">
+          <div className="container mx-auto">
+            <div className="mx-auto mb-14 max-w-[620px] text-center">
+              <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
+                Agent skill
+              </span>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">One skill. Any coding agent.</h2>
+            </div>
+
+            <AgentSkill />
           </div>
         </section>
 
@@ -333,6 +350,22 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Philosophy */}
+        <section className="px-4 py-16 text-center md:px-0 md:py-20">
+          <div className="container mx-auto max-w-[720px]">
+            <p className="text-[1.3rem] leading-snug text-[#e7edf3] md:text-[1.6rem]">
+              Firewall rules are infrastructure. They belong in version control, reviewed in pull requests, and
+              rolled back with{' '}
+              <code className="rounded-[3px] border border-[#2a333c] bg-[#131920] px-1.5 py-0.5 font-[family-name:var(--font-space-mono)] text-[0.85em] text-[#93e2ff]">
+                git revert
+              </code>
+              , not edited by hand in a dashboard nobody diffs.
+            </p>
+          </div>
+        </section>
+
+        <ScanDivider />
 
         {/* CTA */}
         <section
