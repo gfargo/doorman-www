@@ -56,10 +56,6 @@ export function CommandLogEntry({
           <h3 className="font-[family-name:var(--font-chakra)] text-[1.15rem] uppercase tracking-wide text-[#e7edf3]">
             {title}
           </h3>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#1f7a45] bg-[#39e075]/[0.08] px-2.5 py-1 font-[family-name:var(--font-space-mono)] text-[0.6rem] uppercase tracking-wide text-[#39e075]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#39e075] shadow-[0_0_6px_#39e075]" />
-            Cleared
-          </span>
         </div>
         <p className="max-w-[520px] text-[#8b98a5]">{description}</p>
         <CopyableCommand command={command} dark />
