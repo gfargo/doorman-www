@@ -26,6 +26,9 @@ npm-debug.log*
 # vercel
 .vercel
 
+# doorman firewall backups (doorman backup) — rule snapshots, not source
+backups/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
