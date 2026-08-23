@@ -332,6 +332,18 @@ export default function Home() {
             </div>
 
             <ProviderTerminals />
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-[family-name:var(--font-space-mono)] text-[0.75rem] uppercase tracking-wide">
+              <Link href="/vercel" className="text-[#8b98a5] underline decoration-[#2a333c] underline-offset-4 hover:text-[#93e2ff] hover:decoration-[#93e2ff]">
+                Doorman for Vercel &rarr;
+              </Link>
+              <Link href="/cloudflare" className="text-[#8b98a5] underline decoration-[#2a333c] underline-offset-4 hover:text-[#93e2ff] hover:decoration-[#93e2ff]">
+                Doorman for Cloudflare &rarr;
+              </Link>
+              <Link href="/fastly" className="text-[#8b98a5] underline decoration-[#2a333c] underline-offset-4 hover:text-[#93e2ff] hover:decoration-[#93e2ff]">
+                Doorman for Fastly &rarr;
+              </Link>
+            </div>
           </div>
         </section>
 

@@ -7,7 +7,7 @@ import { HeaderNavbar } from './HeaderNavbar'
 
 export const Header = () => {
   const pathname = usePathname()
-  const isDarkRoute = pathname === '/' || pathname === '/rule-builder'
+  const isDarkRoute = ['/', '/rule-builder', '/vercel', '/cloudflare', '/fastly'].includes(pathname)
 
   return (
     <header

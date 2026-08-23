@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 
 export const Footer = () => {
   const pathname = usePathname()
-  const isDarkRoute = pathname === '/' || pathname === '/rule-builder'
+  const isDarkRoute = ['/', '/rule-builder', '/vercel', '/cloudflare', '/fastly'].includes(pathname)
 
   return (
     <footer
