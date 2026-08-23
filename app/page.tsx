@@ -194,6 +194,46 @@ const COMMANDS = [
       </svg>
     ),
   },
+  {
+    number: '09',
+    title: 'Back up and restore',
+    description:
+      'Snapshot the live remote config before a risky change. If something goes wrong, restore it with one command.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman backup' },
+      { value: 'yarn', command: 'npx @gfargo/doorman backup' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest backup' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest backup' },
+    ],
+    imageSrc: '/gifs/backup.gif',
+    imageWidth: 1200,
+    imageHeight: 600,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M3 12a9 9 0 1 1 2.6 6.3M3 12v5m0-5h5" />
+      </svg>
+    ),
+  },
+  {
+    number: '10',
+    title: 'Export documentation',
+    description:
+      'Generate a readable rule-by-rule report in Markdown, JSON, or YAML. Good for audits, pull requests, or just remembering why a rule exists.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman export --format markdown' },
+      { value: 'yarn', command: 'npx @gfargo/doorman export --format markdown' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest export --format markdown' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest export --format markdown' },
+    ],
+    imageSrc: '/gifs/export.gif',
+    imageWidth: 1200,
+    imageHeight: 600,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <path d="M12 21V9m0 0 4 4m-4-4-4 4M4 3h16" />
+      </svg>
+    ),
+  },
 ]
 
 export default function Home() {
