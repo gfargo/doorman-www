@@ -66,6 +66,16 @@ const DesktopLinks = ({ dark }: { dark: boolean }) => (
         Docs
       </Link>
       <Link
+        href="/rule-builder"
+        className={
+          dark
+            ? 'font-[family-name:var(--font-space-mono)] text-[0.78rem] uppercase tracking-wide text-[#8b98a5] transition-colors hover:text-[#93e2ff]'
+            : 'text-gray-600 hover:text-black transition-colors'
+        }
+      >
+        Rule Builder
+      </Link>
+      <Link
         href="/docs/getting-started"
         className={
           dark
@@ -90,6 +100,7 @@ const DesktopLinks = ({ dark }: { dark: boolean }) => (
 
 const MENU_LINKS = [
   { href: '/docs', label: 'docs' },
+  { href: '/rule-builder', label: 'rule-builder' },
   { href: '/docs/getting-started', label: 'get-started', accent: true },
   { href: 'https://github.com/gfargo/doorman', label: 'github', external: true },
 ]
