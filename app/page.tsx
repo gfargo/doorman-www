@@ -54,6 +54,27 @@ const INSTALL_COMMAND = [
 const COMMANDS = [
   {
     number: '02',
+    title: 'Add rules interactively',
+    description:
+      'Answer a few prompts, doorman writes the rule. Name it, pick a condition, set the match, choose an action. No hand-editing .doorman.json required.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman add --interactive' },
+      { value: 'yarn', command: 'npx @gfargo/doorman add --interactive' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest add --interactive' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest add --interactive' },
+    ],
+    imageSrc: '/gifs/add-interactive.gif',
+    imageWidth: 1200,
+    imageHeight: 600,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 8v8M8 12h8" />
+      </svg>
+    ),
+  },
+  {
+    number: '03',
     title: 'Download configs',
     description:
       'Export deployed rules from each provider into versioned config files. Keep Vercel, Cloudflare, and Fastly in lockstep with Git history.',
@@ -73,7 +94,7 @@ const COMMANDS = [
     ),
   },
   {
-    number: '03',
+    number: '04',
     title: 'List rules & IPs',
     description:
       'Inspect deployed policies with human-friendly tables or JSON. Filter by provider, environment, and rule group in seconds.',
@@ -93,7 +114,7 @@ const COMMANDS = [
     ),
   },
   {
-    number: '04',
+    number: '05',
     title: 'Validate rules',
     description:
       'Validate rule syntax and provider-specific constraints before deployment. Every provider accepts the result before you deploy.',
@@ -113,7 +134,28 @@ const COMMANDS = [
     ),
   },
   {
-    number: '05',
+    number: '06',
+    title: 'Start from a template',
+    description:
+      'init security-focused scaffolds a new config pre-loaded with a security-minded rule set. Validate it, then sync when ready.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman init security-focused' },
+      { value: 'yarn', command: 'npx @gfargo/doorman init security-focused' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest init security-focused' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest init security-focused' },
+    ],
+    imageSrc: '/gifs/quickstart.gif',
+    imageWidth: 1200,
+    imageHeight: 600,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M3 9h18M9 21V9" />
+      </svg>
+    ),
+  },
+  {
+    number: '07',
     title: 'Use templates',
     description:
       'Start new protections from templates tuned for Vercel, Cloudflare, and Fastly. Customize and extend policy packs as you add providers.',
@@ -133,7 +175,7 @@ const COMMANDS = [
     ),
   },
   {
-    number: '06',
+    number: '08',
     title: 'Adopt existing rules',
     description:
       'Already have rules configured by hand in the Vercel dashboard? Download them into a versioned config, validate the result, and commit. No rework required.',
