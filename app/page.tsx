@@ -5,6 +5,7 @@ import { AgentSkill } from '@/components/home/AgentSkill'
 import { CommandLogEntry } from '@/components/home/CommandLogEntry'
 import { GettingStarted } from '@/components/home/GettingStarted'
 import { LiveStats } from '@/components/home/LiveStats'
+import { ProviderSyncCard } from '@/components/home/ProviderSyncCard'
 import { ProviderTerminals } from '@/components/home/ProviderTerminals'
 import { TrafficPanel } from '@/components/home/TrafficPanel'
 import { archivo, chakraPetch, spaceMono } from '@/lib/fonts'
@@ -52,47 +53,7 @@ const INSTALL_COMMAND = [
 
 const COMMANDS = [
   {
-    number: '01',
-    title: 'Now shipping to Fastly',
-    description:
-      'The same status, diff, and sync workflow you already run for Vercel and Cloudflare, now pointed at Fastly Next‑Gen WAF. Same commands, same config format. Just a third provider.',
-    command: [
-      { value: 'npm', command: 'npx @gfargo/doorman sync --provider fastly' },
-      { value: 'yarn', command: 'npx @gfargo/doorman sync --provider fastly' },
-      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest sync --provider fastly' },
-      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest sync --provider fastly' },
-    ],
-    imageSrc: '/gifs/fastly-sync.gif',
-    imageWidth: 1900,
-    imageHeight: 900,
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-        <path d="M13 2 4 14h6l-1 8 9-12h-6z" />
-      </svg>
-    ),
-  },
-  {
     number: '02',
-    title: 'Sync changes',
-    description:
-      'Synchronize rule packs to Vercel, Cloudflare, and Fastly from the same config. Catch drift with provider-aware diffs before anything ships.',
-    command: [
-      { value: 'npm', command: 'npx @gfargo/doorman sync' },
-      { value: 'yarn', command: 'npx @gfargo/doorman sync' },
-      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest sync' },
-      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest sync' },
-    ],
-    imageSrc: '/gifs/sync.gif',
-    imageWidth: 1900,
-    imageHeight: 700,
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4">
-        <path d="M17 2l4 4-4 4M3 12v-2a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 12v2a4 4 0 0 1-4 4H3" />
-      </svg>
-    ),
-  },
-  {
-    number: '03',
     title: 'Download configs',
     description:
       'Export deployed rules from each provider into versioned config files. Keep Vercel, Cloudflare, and Fastly in lockstep with Git history.',
@@ -112,7 +73,7 @@ const COMMANDS = [
     ),
   },
   {
-    number: '04',
+    number: '03',
     title: 'List rules & IPs',
     description:
       'Inspect deployed policies with human-friendly tables or JSON. Filter by provider, environment, and rule group in seconds.',
@@ -132,7 +93,7 @@ const COMMANDS = [
     ),
   },
   {
-    number: '05',
+    number: '04',
     title: 'Validate rules',
     description:
       'Validate rule syntax and provider-specific constraints before deployment. Every provider accepts the result before you deploy.',
@@ -152,7 +113,7 @@ const COMMANDS = [
     ),
   },
   {
-    number: '06',
+    number: '05',
     title: 'Use templates',
     description:
       'Start new protections from templates tuned for Vercel, Cloudflare, and Fastly. Customize and extend policy packs as you add providers.',
@@ -172,7 +133,7 @@ const COMMANDS = [
     ),
   },
   {
-    number: '07',
+    number: '06',
     title: 'Adopt existing rules',
     description:
       'Already have rules configured by hand in the Vercel dashboard? Download them into a versioned config, validate the result, and commit. No rework required.',
@@ -303,13 +264,15 @@ export default function Home() {
               </span>
               <h2 className="text-[1.8rem] md:text-[2.75rem]">What doorman does</h2>
               <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
-                Every doorman command, explained. Copy any line straight into your terminal.
+                Manages Vercel, Cloudflare, and Fastly firewall rules as version-controlled config: define a rule
+                once, sync it to whichever provider you run, review changes before they ship.
               </p>
             </div>
 
             <div>
+              <ProviderSyncCard />
               {COMMANDS.map((entry, i) => (
-                <CommandLogEntry key={entry.number} {...entry} reverse={i % 2 === 1} />
+                <CommandLogEntry key={entry.number} {...entry} reverse={i % 2 === 0} />
               ))}
             </div>
           </div>
