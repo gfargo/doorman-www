@@ -258,7 +258,7 @@ export default function Home() {
             <div className="text-center md:text-left">
               <span className="inline-flex items-center gap-2 rounded-[3px] border border-[#4fc3e8]/20 bg-[#4fc3e8]/[0.05] px-4 py-2 font-[family-name:var(--font-space-mono)] text-[0.68rem] uppercase tracking-wide text-[#93e2ff]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#39e075] shadow-[0_0_8px_#39e075]" />
-                Now supporting Fastly Next&#8209;Gen WAF
+                Now supporting Google Cloud Armor
               </span>
 
               <h1 className="mt-6 text-[2.6rem] leading-[1.02] tracking-tight md:text-[3.5rem] lg:text-[4.4rem]">
@@ -286,7 +286,7 @@ export default function Home() {
                     Cloudflare WAF
                   </Link>
                 </strong>
-                , and{' '}
+                ,{' '}
                 <strong className="font-semibold text-[#e7edf3]">
                   <Link
                     className="underline decoration-[#2a333c] underline-offset-4 hover:decoration-[#93e2ff]"
@@ -294,6 +294,16 @@ export default function Home() {
                     target="_blank"
                   >
                     Fastly Next&#8209;Gen WAF
+                  </Link>
+                </strong>
+                , and{' '}
+                <strong className="font-semibold text-[#e7edf3]">
+                  <Link
+                    className="underline decoration-[#2a333c] underline-offset-4 hover:decoration-[#93e2ff]"
+                    href="https://cloud.google.com/armor/docs"
+                    target="_blank"
+                  >
+                    Google Cloud Armor
                   </Link>
                 </strong>
                 .
