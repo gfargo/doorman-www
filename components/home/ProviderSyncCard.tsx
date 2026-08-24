@@ -5,7 +5,7 @@ import { InteractiveImage } from '@/components/InteractiveImage'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-type ProviderId = 'vercel' | 'cloudflare' | 'fastly'
+type ProviderId = 'vercel' | 'cloudflare' | 'fastly' | 'gcp'
 
 const PROVIDERS: Record<
   ProviderId,
@@ -59,6 +59,20 @@ const PROVIDERS: Record<
     imageSrc: '/gifs/fastly-sync.gif',
     imageWidth: 1900,
     imageHeight: 900,
+  },
+  gcp: {
+    label: 'GCP',
+    description:
+      'The same status, diff, and sync workflow, pointed at Google Cloud Armor. Cloud Armor gets a CEL expression, translated automatically from the same rule.',
+    command: [
+      { value: 'npm', command: 'npx @gfargo/doorman sync --provider gcp' },
+      { value: 'yarn', command: 'npx @gfargo/doorman sync --provider gcp' },
+      { value: 'pnpm', command: 'pnpm dlx @gfargo/doorman@latest sync --provider gcp' },
+      { value: 'bun', command: 'bunx --bun @gfargo/doorman@latest sync --provider gcp' },
+    ],
+    imageSrc: '/gifs/gcp-sync.gif',
+    imageWidth: 1900,
+    imageHeight: 700,
   },
 }
 

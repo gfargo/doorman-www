@@ -110,6 +110,14 @@ const WIKI_PAGES: WikiPage[] = [
     order: 6,
     description: 'Migrate firewall rules from Vercel to Fastly Next-Gen WAF with automatic rule translation.',
   },
+  {
+    slug: 'gcp-setup',
+    title: 'GCP Setup',
+    wikiPath: 'GCP-Setup',
+    category: 'Guides',
+    order: 7,
+    description: 'Set up Doorman with Google Cloud Armor — credentials, configuration, and deployment.',
+  },
 ]
 
 const CATEGORY_ORDER: Record<string, number> = {
