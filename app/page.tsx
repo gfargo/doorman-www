@@ -334,10 +334,10 @@ export default function Home() {
               <span className="mb-3 block font-[family-name:var(--font-space-mono)] text-[0.72rem] uppercase tracking-[0.24em] text-[#4fc3e8]">
                 Supported providers
               </span>
-              <h2 className="text-[1.8rem] md:text-[2.75rem]">One rule. Three providers.</h2>
+              <h2 className="text-[1.8rem] md:text-[2.75rem]">One rule. Four providers.</h2>
               <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
                 doorman is the source of truth. Vercel gets the rule as-is. Cloudflare gets a Wirefilter expression.
-                Fastly gets a Next-Gen WAF rule.
+                Fastly gets a Next-Gen WAF rule. GCP gets a CEL expression.
               </p>
             </div>
 

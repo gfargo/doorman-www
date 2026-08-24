@@ -8,6 +8,7 @@ type Example = {
   vercel: string
   cloudflare: string
   fastly: string
+  gcp: string
 }
 
 const EXAMPLES: Example[] = [
@@ -38,6 +39,19 @@ const EXAMPLES: Example[] = [
   ],
   "actions": [{ "type": "block" }]
 }`,
+    gcp: `// CEL requires a has() guard before
+// reading any header field
+{
+  "match": { "expr": {
+    "expression":
+      "has(request.headers[
+      'user-agent']) &&
+      request.headers[
+      'user-agent']
+      .contains('bot')"
+  }},
+  "action": "deny(403)"
+}`,
   },
   {
     id: 'admin',
@@ -66,6 +80,14 @@ const EXAMPLES: Example[] = [
       "operator": "like", "value": "/admin*" }
   ],
   "actions": [{ "type": "block" }]
+}`,
+    gcp: `{
+  "match": { "expr": {
+    "expression":
+      "request.path
+      .startsWith(\\"/admin\\")"
+  }},
+  "action": "deny(403)"
 }`,
   },
 ]
@@ -110,6 +132,17 @@ const TERMINALS: Array<{
     ),
     code: (e) => e.fastly,
   },
+  {
+    name: 'GCP',
+    role: 'Cloud Armor',
+    ledColor: '#4285F4',
+    mark: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#4285F4" strokeWidth={1.8}>
+        <path d="M12 3 19 6.5 V12 C19 16.5 16 19.8 12 21 C8 19.8 5 16.5 5 12 V6.5 Z" />
+      </svg>
+    ),
+    code: (e) => e.gcp,
+  },
 ]
 
 export function ProviderTerminals() {
@@ -136,7 +169,7 @@ export function ProviderTerminals() {
         ))}
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {TERMINALS.map((terminal) => (
           <div
             key={terminal.name}
