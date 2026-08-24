@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 
 export const Footer = () => {
   const pathname = usePathname()
-  const isDarkRoute = ['/', '/rule-builder', '/vercel', '/cloudflare', '/fastly'].includes(pathname)
+  const isDarkRoute = ['/', '/rule-builder', '/vercel', '/cloudflare', '/fastly', '/gcp'].includes(pathname)
 
   return (
     <footer

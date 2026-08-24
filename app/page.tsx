@@ -343,6 +343,9 @@ export default function Home() {
               <Link href="/fastly" className="text-[#8b98a5] underline decoration-[#2a333c] underline-offset-4 hover:text-[#93e2ff] hover:decoration-[#93e2ff]">
                 Doorman for Fastly &rarr;
               </Link>
+              <Link href="/gcp" className="text-[#8b98a5] underline decoration-[#2a333c] underline-offset-4 hover:text-[#93e2ff] hover:decoration-[#93e2ff]">
+                Doorman for GCP &rarr;
+              </Link>
             </div>
           </div>
         </section>
