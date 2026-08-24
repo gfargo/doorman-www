@@ -50,6 +50,10 @@ const content = {
       title: 'One ruleset, fully versioned',
       body: "Cloudflare's custom rules live in a single ruleset. Doorman diffs it against your config and replaces it as a whole on sync.",
     },
+    {
+      title: 'Deploy managed rulesets too',
+      body: 'Turn on the Cloudflare Managed Ruleset or OWASP CRS alongside your custom rules, with per-rule overrides, from the same config file.',
+    },
   ],
   docsHref: '/docs/cloudflare-setup',
 }
