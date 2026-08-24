@@ -13,7 +13,7 @@ describe('wiki-manifest', () => {
       expect(categories.length).toBeGreaterThan(0)
 
       for (let i = 1; i < categories.length; i++) {
-        expect(categories[i].order).toBeGreaterThanOrEqual(categories[i - 1].order)
+        expect(categories[i]!.order).toBeGreaterThanOrEqual(categories[i - 1]!.order)
       }
     })
 
@@ -22,7 +22,7 @@ describe('wiki-manifest', () => {
 
       for (const category of categories) {
         for (let i = 1; i < category.pages.length; i++) {
-          expect(category.pages[i].order).toBeGreaterThanOrEqual(category.pages[i - 1].order)
+          expect(category.pages[i]!.order).toBeGreaterThanOrEqual(category.pages[i - 1]!.order)
         }
       }
     })
@@ -94,7 +94,7 @@ describe('wiki-manifest', () => {
       const slugs = getAllWikiSlugs()
       // Pick a slug that's not first or last
       if (slugs.length >= 3) {
-        const middleSlug = slugs[1]
+        const middleSlug = slugs[1]!
         const { prev, next } = getAdjacentPages(middleSlug)
         expect(prev).not.toBeNull()
         expect(next).not.toBeNull()
@@ -103,15 +103,15 @@ describe('wiki-manifest', () => {
 
     it('returns null prev for the first page', () => {
       const categories = getWikiCategories()
-      const firstPage = categories[0].pages[0]
+      const firstPage = categories[0]!.pages[0]!
       const { prev } = getAdjacentPages(firstPage.slug)
       expect(prev).toBeNull()
     })
 
     it('returns null next for the last page', () => {
       const categories = getWikiCategories()
-      const lastCategory = categories[categories.length - 1]
-      const lastPage = lastCategory.pages[lastCategory.pages.length - 1]
+      const lastCategory = categories[categories.length - 1]!
+      const lastPage = lastCategory.pages[lastCategory.pages.length - 1]!
       const { next } = getAdjacentPages(lastPage.slug)
       expect(next).toBeNull()
     })
