@@ -20,7 +20,7 @@ const jsonLd = {
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Cross-platform',
   description:
-    'Manage Vercel, Cloudflare, and Fastly WAF rules as code with version control and CI/CD integration. CLI tool for syncing, downloading, validating, and deploying multi-provider security configurations.',
+    'Manage Vercel, Cloudflare, Fastly, and Google Cloud Armor WAF rules as code with version control and CI/CD integration. CLI tool for syncing, downloading, validating, and deploying multi-provider security configurations.',
   url: siteUrl,
   offers: {
     '@type': 'Offer',
@@ -28,7 +28,7 @@ const jsonLd = {
     priceCurrency: 'USD',
   },
   featureList: [
-    'Unified Vercel, Cloudflare, and Fastly WAF management',
+    'Unified Vercel, Cloudflare, Fastly, and Google Cloud Armor WAF management',
     'Version control and code review for firewall rules',
     'CI/CD automation for security deployments',
     'Provider-aware sync and drift detection',
@@ -371,8 +371,8 @@ export default function Home() {
               </span>
               <h2 className="text-[1.8rem] md:text-[2.75rem]">What doorman does</h2>
               <p className="mt-4 text-[1.03rem] text-[#8b98a5]">
-                Manages Vercel, Cloudflare, and Fastly firewall rules as version-controlled config: define a rule
-                once, sync it to whichever provider you run, review changes before they ship.
+                Manages Vercel, Cloudflare, Fastly, and Google Cloud Armor firewall rules as version-controlled
+                config: define a rule once, sync it to whichever provider you run, review changes before they ship.
               </p>
             </div>
 
