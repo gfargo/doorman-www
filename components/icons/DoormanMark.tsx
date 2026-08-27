@@ -1,12 +1,15 @@
 /**
- * Custom brand mark, replacing the generic lucide DoorOpenIcon. A door
- * frame whose handle is the same pulsing status dot used throughout the
- * homepage's live-traffic panel and provider terminals, so the mark reads
- * as "a door that's actively watching," not just a door glyph.
+ * Custom brand mark, replacing the generic lucide DoorOpenIcon.
  *
- * Uses currentColor for the frame so it inherits whatever text color its
- * context sets (dark header on light routes, light/cyan on the homepage),
- * and a separate `ledClassName` for the handle dot's color and animation.
+ * Reads as a guarded threshold: an arched doorway (a gate/checkpoint) set
+ * inside a frame, with a scan line across the header and the pulsing status
+ * LED as the handle — the same live-traffic dot used across the homepage
+ * panels and provider terminals. The arch distinguishes it from a plain
+ * rectangular door glyph and nods to a "gateway" being watched.
+ *
+ * The frame uses currentColor so it inherits its context's text color (dark
+ * on light routes, light/cyan on the homepage). `ledClassName` controls the
+ * handle dot's color and `pulse` toggles its animation.
  */
 export function DoormanMark({
   className,
@@ -19,9 +22,26 @@ export function DoormanMark({
 }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
-      <rect x="5" y="2" width="14" height="20" rx="1.5" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M5 7.5h14" stroke="currentColor" strokeWidth="1" opacity="0.35" />
-      <circle cx="15.1" cy="12.5" r="1.35" className={ledClassName}>
+      {/* Outer frame / threshold */}
+      <path
+        d="M4 21V9.2a8 8 0 0 1 16 0V21"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      {/* Floor / threshold line */}
+      <path d="M2.5 21h19" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      {/* Inner door panel */}
+      <path
+        d="M7.5 21V10.2a4.5 4.5 0 0 1 9 0V21"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        opacity="0.45"
+      />
+      {/* Scan / header line */}
+      <path d="M7.8 13.4h8.4" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+      {/* Handle = status LED */}
+      <circle cx="14" cy="16.4" r="1.3" className={ledClassName}>
         {pulse ? (
           <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite" />
         ) : null}
